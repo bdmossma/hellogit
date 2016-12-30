@@ -1,0 +1,18 @@
+{
+  "name": "hellomongodb",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "none",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Ben Mossman",
+  "license": "MIT"
+}

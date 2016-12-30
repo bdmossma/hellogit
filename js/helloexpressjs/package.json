@@ -1,0 +1,18 @@
+{
+  "name": "helloexpressjs",
+  "version": "1.0.0",
+  "description": "hello world",
+  "main": "helloexpressjs.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Ben Mossman",
+  "license": "MIT"
+}

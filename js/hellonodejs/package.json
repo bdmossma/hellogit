@@ -1,0 +1,18 @@
+{
+  "name": "hellonodejs",
+  "version": "1.0.0",
+  "description": "hello world",
+  "main": "hellonodejs.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Ben Mossman",
+  "license": "MIT"
+}
