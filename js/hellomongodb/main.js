@@ -38,6 +38,20 @@ var connection = mongoClient.connect(url, function(error, db) {
             console.log("Created [" + JSON.stringify(aprilRecord) + ", " + JSON.stringify(tomRecord) + "] in collection " + myCollection);
     });
 
+    // READ: multiple records
+    // Let's try to find the records that we added in the previous step...
+    var filter = { recordType: "User Account" };
+    var queryResultSize = 5;    // Notice that we can limit the size of query result
+    db.collection(myCollection).find(filter).limit(queryResultSize).toArray(function(error, records) {
+        if(error) {
+            console.log("ERROR! Failed to find records matching filter " + JSON.stringify(filter) + " in collection " + myCollection);
+        }
+        else {
+            console.log("Found records matching filter " + JSON.stringify(filter) + " in collection " + myCollection + ":");
+            console.log(records);
+        }
+    });
+
     // UPDATE: single record
     var newJockRecord = { recordType: "User Account", name: "Jock", email: "jock@email.com", phone: "111-111-1111", country: "United States" };
     db.collection(myCollection).updateOne(jockRecord, {$set: newJockRecord}, function(error, result) {
@@ -48,7 +62,6 @@ var connection = mongoClient.connect(url, function(error, db) {
     });
 
     // DELETE: 1 or more records
-    var filter = { recordType: "User Account" };
     var options = { single: false };// if single is true, deletes only first record found
     db.collection(myCollection).deleteMany(filter, options, function(error, result) {
         if(error)
@@ -57,22 +70,37 @@ var connection = mongoClient.connect(url, function(error, db) {
             console.log("Deleted records matching filter " + JSON.stringify(filter) + " in collection " + myCollection);
     });
 
-    // READ: 1 or more records
-    // First, let's add some records into the database, so we can find them...
-    db.collection(myCollection).insertMany([aprilRecord, tomRecord], function(error, result) {
+    // Bonus Example: Avoiding duplicate records in your database collection.
+    // Please Note this uses many of the previous steps together
+    // in one example.  Please make sure you understand the previous
+    // steps before proceeding to this example.
+
+    // First, let's demonstrate accidentally adding duplicate records into our database collection...
+    db.collection(myCollection).insertOne(jockRecord, function(error, result) {
         if(error)
-            console.log("ERROR! Failed to create " + JSON.stringify(aprilRecord) + " and " + JSON.stringify(tomRecord) + " in collection " + myCollection);
+            console.log("ERROR! Failed to create " + JSON.stringify(jockRecord) + " in collection " + myCollection);
         else
-            console.log("Created [" + JSON.stringify(aprilRecord) + ", " + JSON.stringify(tomRecord) + "] in collection " + myCollection);
+            console.log("Created " + JSON.stringify(jockRecord) + " in collection " + myCollection);
     });
-    // Next, let's try to find the records that we added... (notice that we can limit the size of query result)
-    var queryResultSize = 5;
-    db.collection(myCollection).find(filter).limit(queryResultSize).toArray(function(error, records) {
-        if(error) {
-            console.log("ERROR! Failed to find records matching filter " + JSON.stringify(filter) + " in collection " + myCollection);
+    // Try adding Jock record again, however this time it will return error
+    // as Jock record is already present in the database collection
+    db.collection(myCollection).insertOne(jockRecord, function(error, result) {
+        if(error){
+            console.log("ERROR! Failed to create " + JSON.stringify(jockRecord) + " in collection " + myCollection);
+            console.log(error);// we expect this second insert to return error
         }
         else {
-            console.log("Found records matching filter " + JSON.stringify(filter) + " in collection " + myCollection + ":");
+            console.log("Created " + JSON.stringify(jockRecord) + " in collection " + myCollection);
+        }
+    });
+    // If we query for all Jock records, we will find only one Jock record and no duplicates.
+    var jockFilter = { recordType: "User Account", name: "Jock" };
+    db.collection(myCollection).find(filter).toArray(function(error, records) {
+        if(error) {
+            console.log("ERROR! Failed to find records matching filter " + JSON.stringify(jockFilter) + " in collection " + myCollection);
+        }
+        else {
+            console.log("Found records matching filter " + JSON.stringify(jockFilter) + " in collection " + myCollection + ":");
             console.log(records);
         }
     });
