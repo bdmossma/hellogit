@@ -1,18 +1,22 @@
 {
   "name": "hellonodejs",
   "version": "1.0.0",
-  "description": "hello world",
-  "main": "hellonodejs.js",
+  "description": "hello world for nodejs",
+  "main": "app.js",
   "scripts": {
     "test": "none"
   },
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "git+https://github.com/bdmossma/hellogit.git"
   },
   "keywords": [
     "none"
   ],
   "author": "Ben Mossman",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bdmossma/hellogit/issues"
+  },
+  "homepage": "https://github.com/bdmossma/hellogit#readme"
 }
