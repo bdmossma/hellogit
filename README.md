@@ -19,9 +19,9 @@ Some popular MEAN stack variants are:
 +   MERN stack (AngularJS replaced by [ReactJS](https://en.wikipedia.org/wiki/React_(JavaScript_library)))
 
 It is interesting to note the order of popularity of the alternatives:
-1   AngularJS (promoted by Google)
-2   ReactJS (promoted by Facebook)
-3   EmberJS (sprung from jQuery tradition)
+1 AngularJS (promoted by Google),
+2 ReactJS (promoted by Facebook),
+3 EmberJS (sprung from jQuery tradition).
 
 # Getting Started
 The MEAN stack is cross-platform, running on Linux, Windows, and macOS.  We will provide instructions
