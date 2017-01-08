@@ -1,18 +1,22 @@
 {
   "name": "hellocs6js",
   "version": "1.0.0",
-  "description": "none",
-  "main": "none",
+  "description": "demonstrates OO programming in ES6, aka JavaScript 2015",
+  "main": "app.js",
   "scripts": {
     "test": "none"
   },
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "git+https://github.com/bdmossma/hellogit.git"
   },
   "keywords": [
     "none"
   ],
   "author": "Ben Mossman",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bdmossma/hellogit/issues"
+  },
+  "homepage": "https://github.com/bdmossma/hellogit#readme"
 }
