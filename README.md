@@ -18,12 +18,19 @@ Some popular MEAN stack variants are:
 +   MEEN stack (AngularJS replaced by [EmberJS](https://en.wikipedia.org/wiki/Ember.js))
 +   MERN stack (AngularJS replaced by [ReactJS](https://en.wikipedia.org/wiki/React_(JavaScript_library)))
 
+It is interesting to note the order of popularity of the alternatives:
+1   AngularJS (promoted by Google)
+2   ReactJS (promoted by Facebook)
+3   EmberJS (sprung from jQuery tradition)
+
 # Getting Started
 The MEAN stack is cross-platform, running on Linux, Windows, and macOS.  We will provide instructions
-for installing it on Windows 7/10 and Ubuntu 16.04 LTS Linux.  The foundation of the
+for installing it on Windows 7/10 and Ubuntu 16.04 LTS Linux.
+
+The foundation of the
 MEAN stack is NodeJS, so it is the first part of
 MEAN stack that gets installed.  But before we get started, we recommend installing a
-few helpful dev tools, but feel free to use your favorites.
+few helpful dev tools.
 ## Install Development Tools
 ### Install GitBash (Terminal Emulator)
 ### Install Atom (IDE)
