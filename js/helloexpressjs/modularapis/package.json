@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/bdmossma/hellogit#readme",
   "dependencies": {
-      "express": "*"
+      "express": "*",
+      "request": "*"
   }
 }
