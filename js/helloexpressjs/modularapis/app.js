@@ -1,11 +1,15 @@
 
 //------------------------------------------------------------------------------
 // APIs 1 & 2 are modular APIs residing in the same tier (deployed to
-// same machine in the network) with localapp.js which can simply
+// same machine in the network) with app.js which can simply
 // import and host them.
 //------------------------------------------------------------------------------
 var express = require("express");
 var app = express();
+
+// Let's import the modular APIs 1 & 2 residing in separate
+// JavaScript files.
+// We can omit the ".js" extension.
 var api1 = require("./api1");
 var api2 = require("./api2");
 
