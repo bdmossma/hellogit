@@ -55,7 +55,8 @@ and function for your terminal experience.
     -   `git config credential.helper cache    # prompts you for your git credentials`
 
 #### For Linux (Ubuntu 16.04 LTS):
-Not terminal emulator required. Bash is natively part Linux distributions.
+No terminal emulator required. Bash is included with your favorite Linux distributions.
+
 Just use Linux terminal.
 
 #### Common Git commands
