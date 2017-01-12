@@ -42,36 +42,37 @@ and function for your terminal experience.
 #### For Windows (7, 10) Only:
 -   Download and install Git Bash from https://git-scm.com/download/win
 -   In Git Bash terminal, checkout this git repo to your local machine:
-    -   mkdir -p /C/workspace/hellogit
-    -   cd /C/workspace/hellogit
-    -   git clone https://github.com/bdmossma/hellogit.git
+    -   `mkdir -p /C/workspace/hellogit`
+    -   `cd /C/workspace/hellogit`
+    -   `git clone https://github.com/bdmossma/hellogit.git`
 -   Setup a git account with a git server.
     -   PLEASE NOTE: You'll need to setup an account with a git server like
         [github.com](https://www.github.com) or [gitlab.com](https://www.gitlab.com)
         which you can do for FREE.  To pull down the examples in this repo, you'll need
         an account with github.com.
 -   In Git Bash terminal, cache your git credentials for the git repo you checked out:
-    -   cd /C/workspace/hellogit
-    -   git config credential.helper cache    # prompts you for your git credentials
+    -   `cd /C/workspace/hellogit`
+    -   `git config credential.helper cache    # prompts you for your git credentials`
 
 #### For Linux (Ubuntu 16.04 LTS):
 Not terminal emulator required. Bash is natively part Linux distributions.
+Just use Linux terminal.
 
 #### Common Git commands
--   git clone (git repo URL)
--   git add (file or dir path)
--   git mv (current filename) (new filepath or filename)
--   git commit (file or dir path) -m "committing some code changes to git repo"
+-   `git clone (git repo URL)`
+-   `git add (file or dir path)`
+-   `git mv (current filename) (new filepath or filename)`
+-   `git commit (file or dir path) -m "committing some code changes to git repo"`
     -   PLEASE NOTE: git is a distributed config management system, so this just commits to your local repo.
--   git push (file, dir path, or nothing)
+-   `git push (file, dir path, or nothing)`
     -   PLEASE NOTE: This actually pushes your code changes to your chosen git server (back to "origin").
 
 ### Install Atom IDE
 #### For Linux (Ubuntu 16.04 LTS):
-sudo apt-get install atom
+`sudo apt-get install atom`
 
 #### For Windows (7, 10):
 -   Download and install Atom from https://atom.io/download/windows
 -   In Git Bash terminal, install some helpful atom plug-ins:
-    -   apm install atom-ternjs
-    -   apm install autocomplete-plus
+    -   `apm install atom-ternjs`
+    -   `apm install autocomplete-plus`
