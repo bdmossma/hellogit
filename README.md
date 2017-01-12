@@ -60,7 +60,7 @@ Not terminal emulator required. Bash is natively part Linux distributions.
 -   git clone (git repo URL)
 -   git add (file or dir path)
 -   git mv (current filename) (new filepath or filename)
--   git commit (file or dir path> -m "committing some code changes to git repo"    # git is a distributed config management system, so this just commits to your local repo
+-   git commit (file or dir path) -m "committing some code changes to git repo"    # git is a distributed config management system, so this just commits to your local repo
 -   git push (file, dir path, or nothing)    # this actually pushes your code changes to your chosen git server (back to "origin")
 
 ### Install Atom IDE
