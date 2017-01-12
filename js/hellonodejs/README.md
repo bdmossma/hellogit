@@ -19,7 +19,7 @@ you can imagine.
 
 Common npm commands:
 -   `npm init        # steps thru creating a new nodejs project in current dir`
--   `npm install     # installs all nodejs packages specified in package.json at current dir`
+-   `npm install     # installs all nodejs packages specified in package.json in your project dir`
 -   `npm install (package name)    # install specified nodejs package`
 
 ### NodeJS Project File
