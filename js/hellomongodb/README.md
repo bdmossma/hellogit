@@ -16,4 +16,4 @@ Download and install MongoDB from https://www.mongodb.com/dr/fastdl.mongodb.org/
 -   In Git Bash terminal, run MongoDB using the following command: `mongod`
 
 #### Install MongoDB package for NodeJS
-npm install mongodb    # or add it under dependencies in your project's package.json file
+`npm install mongodb    # or add it under dependencies in your project's package.json file`
