@@ -57,11 +57,11 @@ git config credential.helper cache    # prompts you for your git credentials
 Not terminal emulator required. Bash is natively part Linux distributions.
 
 #### Common Git commands
--   git clone <repo url>
--   git add <file or dir>
--   git mv <current filename> <new filepath and/or name>
--   git commit <filepath or dir> -m "committing some code changes to git repo"    # git is a distributed config management system, so this just commits to your local repo
--   git push <filepath, dir, or nothing>    # this actually is the point where your code changes get push up to your chosen git server (back to "origin")
+-   git clone (git repo URL)
+-   git add (file or dir path)
+-   git mv (current filename) (new filepath or filename)
+-   git commit (file or dir path> -m "committing some code changes to git repo"    # git is a distributed config management system, so this just commits to your local repo
+-   git push (file, dir path, or nothing)    # this actually pushes your code changes to your chosen git server (back to "origin")
 
 ### Install Atom IDE
 #### For Linux (Ubuntu 16.04 LTS):
@@ -69,61 +69,6 @@ sudo apt-get install atom
 
 #### For Windows (7, 10):
 -   Download and install Atom from https://atom.io/download/windows
--   In Git Bash terminal, install helpful atom plug-ins:
+-   In Git Bash terminal, install some helpful atom plug-ins:
 apm install atom-ternjs
 apm install autocomplete-plus
-
-## Install NodeJS
-#### For Linux (Ubuntu 16.04 LTS):
-sudo apt-get install nodejs
-sudo apm install atom-ternjs
-sudo apm install autocomplete-plus
-
-#### For Windows (7, 10):
-Download and install NodeJS from https://nodejs.org/dist/v6.9.4/node-v6.9.4-x64.msi
-This installs npm, the powerful and very easy-to-use
-NodeJS package manager.
-
-#### NodeJS Package Manager (npm)
-In 2011, NodeJS was the most active
-open-source project in github and continues to be one of the most popular, with a vibrant
-developer community and untold thousands of packages being contributed all the time,
-so you can use npm to install a package for pretty much anything
-you can imagine.
-
-Common npm commands:
--   npm init        # steps thru creating a new nodejs project in current dir
--   npm install     # installs all nodejs packages specified in package.json at current dir
--   npm install (package name)    # install specified nodejs package
-
-The package.json file is the heart of your nodejs project configuration.
-It is recommended that you run "npm init" in your project dir and let it guide you through
-creating your package.json file and specifying your chosen software license, your
-github url, and other configuration items.
-
-Lastly, you can open the package.json file and list all of your dependencies.
-It is easy to list dependencies. You can easily add new dependencies to
-package.json as shown below. You can use a specific version or list an asterisk
-to use the latest available version.
-
-`{
-  "name": "MyNodeJSAppName",
-  "version": "1.0.0",
-  "description": "This NodeJS app does XYZ!!!",
-  "main": "MyNodeJSApp.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/<MyUsername>/<MyGitRepoName>.git"
-  },
-  "author": "<My Full Name>",
-  "license": "MIT",
-  "dependencies": {
-      "express": "*"
-  }
-}`
-
-## Install ExpressJS
-#### For Linux (Ubuntu 16.04 LTS):
-
-## Install MongoDB
-## Install AngularJS
