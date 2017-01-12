@@ -1,5 +1,5 @@
 # Hello NodeJS!
-NodeJS has based upon the V8 JavaScript engine from the Google Chrome project.
+NodeJS is based upon the V8 JavaScript engine from the Google Chrome project.
 It performs "just in time" compilation of JavaScript to machine code and consistently
 outperforms other engines.
 
