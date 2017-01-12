@@ -45,10 +45,11 @@ and function for your terminal experience.
     -   mkdir -p /C/workspace/hellogit
     -   cd /C/workspace/hellogit
     -   git clone https://github.com/bdmossma/hellogit.git
--   Setup a git account with a git server:
-Note that you'll need to setup a user account with a git server like github.com or gitlab.com
-which you can do for free.  To pull down the examples in this repo, you'll need
-an account specifically with github.com.
+-   Setup a git account with a git server.
+    -   PLEASE NOTE: You'll need to setup an account with a git server like
+        [github.com](https://www.github.com) or [gitlab.com](https://www.gitlab.com)
+        which you can do for FREE.  To pull down the examples in this repo, you'll need
+        an account with github.com.
 -   In Git Bash terminal, cache your git credentials for the git repo you checked out:
     -   cd /C/workspace/hellogit
     -   git config credential.helper cache    # prompts you for your git credentials
