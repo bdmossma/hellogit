@@ -6,7 +6,7 @@ interfaces to help organize your application.
 ## Support for ES6
 ES6 Enjoys Good Support on NodeJS (back-end) and in most browsers (front-end)
 
-Click [here](http://node.green/) for a running tally of what ES6 features are supported.
+Click [here](http://node.green/) for a running tally of what ES6 features are supported
 by a broad range of browsers and platforms.
 
 ## Running ES6 on NodeJS
