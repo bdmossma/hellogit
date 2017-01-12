@@ -40,16 +40,16 @@ and many common commands (ls, touch, mkdir, cd, etc), and just provides a nice L
 and function for your terminal experience.
 
 #### For Windows (7, 10) Only:
-1   Download and install Git Bash from https://git-scm.com/download/win
-2   In Git Bash terminal, checkout this git repo to your local machine:
+-   Download and install Git Bash from https://git-scm.com/download/win
+-   In Git Bash terminal, checkout this git repo to your local machine:
 mkdir -p /C/workspace/hellogit
 cd /C/workspace/hellogit
 git clone https://github.com/bdmossma/hellogit.git
-3   Setup a git account with a git server:
+-   Setup a git account with a git server:
 Note that you'll need to setup a user account with a git server like github.com or gitlab.com
 which you can do for free.  To pull down the examples in this repo, you'll need
 an account specifically with github.com.
-4   In Git Bash terminal, cache your git credentials for the git repo you checked out:
+-   In Git Bash terminal, cache your git credentials for the git repo you checked out:
 cd /C/workspace/hellogit
 git config credential.helper cache    # prompts you for your git credentials
 
@@ -68,8 +68,8 @@ Not terminal emulator required. Bash is natively part Linux distributions.
 sudo apt-get install atom
 
 #### For Windows (7, 10):
-1   Download and install Atom from https://atom.io/download/windows
-2   In Git Bash terminal, install helpful atom plug-ins:
+-   Download and install Atom from https://atom.io/download/windows
+-   In Git Bash terminal, install helpful atom plug-ins:
 apm install atom-ternjs
 apm install autocomplete-plus
 
@@ -81,7 +81,8 @@ sudo apm install autocomplete-plus
 
 #### For Windows (7, 10):
 Download and install NodeJS from https://nodejs.org/dist/v6.9.4/node-v6.9.4-x64.msi
-This installs npm, the NodeJS package manager.
+This installs npm, the powerful and very easy-to-use
+NodeJS package manager.
 
 #### NodeJS Package Manager (npm)
 In 2011, NodeJS was the most active
@@ -90,20 +91,22 @@ developer community and untold thousands of packages being contributed all the t
 so you can use npm to install a package for pretty much anything
 you can imagine.
 
-Command npm commands:
+Common npm commands:
 -   npm init        # steps thru creating a new nodejs project in current dir
 -   npm install     # installs all nodejs packages specified in package.json at current dir
--   npm install <package name>    # install specified nodejs package
+-   npm install (package name)    # install specified nodejs package
+
 The package.json file is the heart of your nodejs project configuration.
 It is recommended that you run "npm init" in your project dir and let it guide you through
 creating your package.json file and specifying your chosen software license, your
 github url, and other configuration items.
+
 Lastly, you can open the package.json file and list all of your dependencies.
 It is easy to list dependencies. You can easily add new dependencies to
 package.json as shown below. You can use a specific version or list an asterisk
 to use the latest available version.
-`
-{
+
+`{
   "name": "MyNodeJSAppName",
   "version": "1.0.0",
   "description": "This NodeJS app does XYZ!!!",
@@ -117,8 +120,7 @@ to use the latest available version.
   "dependencies": {
       "express": "*"
   }
-}
-`
+}`
 
 ## Install ExpressJS
 #### For Linux (Ubuntu 16.04 LTS):
