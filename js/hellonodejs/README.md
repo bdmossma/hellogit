@@ -7,10 +7,10 @@
 ### For Windows (7, 10):
 Download and install NodeJS from https://nodejs.org/dist/v6.9.4/node-v6.9.4-x64.msi
 
-This installs `npm`, the powerful and very easy-to-use
+### NodeJS Package Manager (npm)
+When you install NodeJS, you also get `npm`, the powerful and very easy-to-use
 NodeJS package manager.
 
-### NodeJS Package Manager (npm)
 In 2011, NodeJS was the most active
 open-source project in github and continues to be one of the most popular, with a vibrant
 developer community and untold thousands of packages being contributed all the time,
