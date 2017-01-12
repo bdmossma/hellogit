@@ -33,7 +33,8 @@ It is easy to list dependencies. You can easily add new dependencies to
 `package.json` as shown below. You can use a specific version or list an asterisk
 to use the latest available version.
 
-```{
+```json
+{
   "name": "MyNodeJSAppName",
   "version": "1.0.0",
   "description": "This NodeJS app does XYZ!!!",
@@ -47,7 +48,8 @@ to use the latest available version.
   "dependencies": {
       "express": "*"
   }
-}```
+}
+```
 
 ### Running a NodeJS Application
 Piece of cake!
