@@ -36,25 +36,27 @@ few helpful dev tools.
 ### Install Git Bash
 You can certainly use Windows command prompt if you wish, but I highly recommend using
 the Git Bash terminal emulator.  It installs a Git client, emulates Unix path syntax (forward slashes)
-and many common commands (ls, touch, mkdir, cd, etc), and just provides a nice Linux look and feel
+and many common commands (`ls, touch, mkdir, cd, rm, mv`), and just provides a nice Linux look-and-feel
 and function for your terminal experience.
 
 #### For Windows (7, 10) Only:
 -   Download and install Git Bash from https://git-scm.com/download/win
--   In Git Bash terminal, checkout this git repo to your local machine:
-    -   `mkdir -p /C/workspace/hellogit`
-    -   `cd /C/workspace/hellogit`
+-   In Git Bash terminal, clone this git repo to your local machine:
+    -   `mkdir -p /c/workspace/hellogit`
+    -   `cd /c/workspace/hellogit`
     -   `git clone https://github.com/bdmossma/hellogit.git`
 -   Setup a git account with a git server.
-    -   PLEASE NOTE: You'll need to setup an account with a git server like
-        [github.com](https://www.github.com) or [gitlab.com](https://www.gitlab.com)
-        which you can do for FREE.  To pull down the examples in this repo, you'll need
-        an account with github.com.
+    -   PLEASE NOTE: You'll need to setup a free account with a git server like
+        [github.com](https://www.github.com) or [gitlab.com](https://www.gitlab.com).
+        To clone the examples from this git repo, you'll need
+        a github.com account.
 -   In Git Bash terminal, cache your git credentials for the git repo you checked out:
     -   `cd /C/workspace/hellogit`
     -   `git config credential.helper cache    # prompts you for your git credentials`
 
 #### For Linux (Ubuntu 16.04 LTS):
+Piece of cake!
+
 No terminal emulator required. Bash is included with your favorite Linux distributions.
 
 Just use Linux terminal.
