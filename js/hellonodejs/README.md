@@ -1,4 +1,18 @@
 # Hello NodeJS!
+NodeJS has based upon the V8 JavaScript engine from the Google Chrome project.
+It performs "just in time" compilation of JavaScript to machine code and consistently
+outperforms other engines.
+
+The brilliance of NodeJS is writing JavaScript in the back-end, not just in the
+front-end of your product.  This allows a front-end developer who knows JavaScript
+to work as a full-stack developer.
+
+This is particularly helpful with Agile development where teams are
+delivering functionality as "user stories" which are completely functional slices through the entire
+product stack.
+
+Not to mention, front-end or back-end developers are much, much easier to find than
+full-stack developers.
 
 ## Install NodeJS
 ### For Linux (Ubuntu 16.04 LTS):
