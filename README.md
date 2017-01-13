@@ -73,7 +73,7 @@ Just use Linux terminal.
 ### Install Atom IDE
 #### For Linux (Ubuntu 16.04 LTS):
 -   `apt-get install atom`
-    -   PLEASE NOTE: atom's package manager, `apm`, is installed with atom`
+    -   PLEASE NOTE: atom's package manager, `apm`, is installed with atom
 
 #### For Windows (7, 10):
 Download and install Atom from https://atom.io/download/windows
