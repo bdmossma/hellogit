@@ -75,7 +75,7 @@ Just use Linux terminal.
 `apt-get install atom   # apm, atom's package manager, should get installed with it`
 
 #### For Windows (7, 10):
--   Download and install Atom from https://atom.io/download/windows
+Download and install Atom from https://atom.io/download/windows
 
 #### Install some helpful atom plug-ins
 `apm install atom-ternjs`
