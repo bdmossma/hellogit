@@ -72,11 +72,12 @@ Just use Linux terminal.
 
 ### Install Atom IDE
 #### For Linux (Ubuntu 16.04 LTS):
-`apt-get install atom   # apm, atom's package manager, should get installed with it`
+-   `apt-get install atom
+    -   PLEASE NOTE: atom's package manager, `apm`, is installed with atom`
 
 #### For Windows (7, 10):
 Download and install Atom from https://atom.io/download/windows
 
 #### Install some helpful atom plug-ins
-`apm install atom-ternjs`
-`apm install autocomplete-plus`
+-   `apm install atom-ternjs`
+-   `apm install autocomplete-plus`
