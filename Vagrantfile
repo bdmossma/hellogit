@@ -5,6 +5,10 @@ Vagrant.configure(2) do |config|
 	# pick your poison of vagrant base boxes
 	config.vm.box = "ubuntu/xenial64"
 
+	# set SSH credentials for SSHing into the virtualbox
+	#config.ssh.username = "vagrant"
+	#config.ssh.password = "vagrant"
+
 	# configure a shared folder for file-sharing
 	# between host and guest
 	config.vm.synced_folder ".", "/shared"
@@ -23,7 +27,7 @@ Vagrant.configure(2) do |config|
 		vb.cpus = 1
 		vb.customize [ "modifyvm", :id, "--nictype1", "virtio" ]
 	end
-	
+
 	# install xfce and VirtualBox Guest Additions
 	#config.vm.provision "shell", inline: "sudo apt-get update"
 	#config.vm.provision "shell", inline: "sudo apt-get install -y nodejs npm; sudo npm install express"
