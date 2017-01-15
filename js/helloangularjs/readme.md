@@ -40,6 +40,11 @@ Please note that each GUI component has settings
 that can be configured and the default iPhone device can be changed in an upper-left dropdown
 menu to several different mobile devices including phones and tablets.
 
+## Exporting an Ionic Application Project
+You can easily export your Ionic app project from Ionic Creator and download it
+to your local machine and run it from there.
+Go [here](http://docs.usecreator.com/docs/exporting) for the official guide.
+
 ## Running an Ionic Application
 Ionic launches the JavaScript components of your Ionic application
 on NodeJS under the hood, so please check out our [NodeJS Hello World](https://github.com/bdmossma/hellogit/tree/master/js/hellonodejs)
