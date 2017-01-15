@@ -45,16 +45,16 @@ You can easily export your Ionic app project from Ionic Creator and download it
 to your local machine and run it from there.
 Go [here](http://docs.usecreator.com/docs/exporting) for the official guide.
 
-## Running an Ionic Application
+## Running an Ionic App in the Browser
 Ionic launches the JavaScript components of your Ionic application
 on NodeJS under the hood, so please check out our [NodeJS Hello World](https://github.com/bdmossma/hellogit/tree/master/js/hellonodejs)
 to install it before you get started with this example.
 
 ### For Windows (7, 10):
-`ionic start myIonicApp`
+`ionic start MyIonicApp`
 
 ### For Linux (Ubuntu 16.04 LTS):
-`ionic start myIonicApp`
+`ionic start MyIonicApp`
 
 ## Deploying an Ionic Application
 ### Submit your new app to the Apple App store
