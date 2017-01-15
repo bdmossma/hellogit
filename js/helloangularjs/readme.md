@@ -24,14 +24,21 @@ back of AngularJS (1.x).  Soon enough, Ionic Creator will be updated to support
 the new Angular version and we can tackle learning it then.
 
 ## Install Ionic
+Ionic launches the JavaScript components of your Ionic application
+on NodeJS under the hood, so please check out our [NodeJS Hello World](https://github.com/bdmossma/hellogit/tree/master/js/hellonodejs)
+to install it before you get started with this example.
+
 ### For Linux (Ubuntu 16.04 LTS):
-`sudo npm install -g ionic`
+-   `sudo npm install -g ionic    # Be aware that this will take a while`
+-   `npm install -g cordova       # Ionic's biggest dependency is Apache Cordova`
 
 ### For Windows (7, 10):
 In Git Bash terminal, run the following command:
-`npm install -g ionic`
+-   `npm install -g ionic      # Be aware that this will take a while`
+-   `npm install -g cordova    # Ionic's biggest dependency is Apache Cordova`
+-   Make sure to add "C:\npm" to your Path environment variable!!!
 
-## Creating an Ionic App Project
+## Creating an Ionic App Project in Ionic Creator
 -   Create a free account here and log in: https://creator.ionic.io/app/login
 -   Click the + New Project button (select Blank template) and start drag-and-dropping GUI components
 onto the iPhone displayed at center screen.
@@ -40,21 +47,31 @@ Please note that each GUI component has settings
 that can be configured and the default iPhone device can be changed in an upper-left dropdown
 menu to several different mobile devices including phones and tablets.
 
-## Exporting an Ionic App Project
+## Exporting an Ionic App Project from Ionic Creator
 You can easily export your Ionic app project from Ionic Creator and download it
 to your local machine and run it from there.
 Go [here](http://docs.usecreator.com/docs/exporting) for the official guide.
 
-## Running an Ionic App in the Browser
-Ionic launches the JavaScript components of your Ionic application
-on NodeJS under the hood, so please check out our [NodeJS Hello World](https://github.com/bdmossma/hellogit/tree/master/js/hellonodejs)
-to install it before you get started with this example.
+We recommend exporting as a zip and unzipping it to `/path/to/export` on your local machine.
+
+## Creating Ionic App Project on Local Machine (using Ionic Creator export)
+Do note that it is recommended to build out the GUI your Ionic app using Ionic Creator and
+after that exporting it if you wish. The GUI building part of your app development greatly benefits from
+using Ionic Creator.
 
 ### For Windows (7, 10):
-`ionic start MyIonicApp`
+-   `ionic start myionicsapp_v1 /path/to/export    # The last option tells ionic to use the source from the export when creating the new project`
 
 ### For Linux (Ubuntu 16.04 LTS):
-`ionic start MyIonicApp`
+-   `ionic start myionicsapp_v1 /path/to/export    # The last option tells ionic to use the source from the export when creating the new project`
+
+## Running an Ionic App on Local Machine
+### In the Browser (recommended):
+-   `cd myionicapp_v1`
+-   `ionic serve`
+### In Simulator
+-   `cd myionicapp_v1`
+-   `ionic run [ios|android]    # This goes down the rabbit hole, so let's stick to using browser above for now; else you'll have to install platform SDKs`
 
 ## Deploying an Ionic App
 ### Submitting to the Apple App store
