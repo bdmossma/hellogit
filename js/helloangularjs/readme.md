@@ -1,0 +1,39 @@
+# Hello AngularJS w/ Ionic!
+The hello world demonstrates how easy it is to develop an AngularJS application
+for the front-end by using the Ionic and specifically Ionic Creator.
+
+Ionic is a powerful framework based on Apache Cordova which homogenizes function and
+look-and-feel for mobile apps and web apps across all of the major
+mobile device platforms like iOS and Android.  This means you can have a single
+code base but can deploy to any device.
+
+Ionic Creator is a web-based IDE created by the Ionic team which provides
+a drag-and-drop GUI builder for your AngularJS applications as well as integrated
+support for AngularJS scripting.
+
+Ionic Creator currently supports AngularJS (1.x) and has not been updated to
+support the new Angular2, so we will be doing this example on the
+back of AngularJS (1.x).
+
+## Install Ionic
+### For Linux (Ubuntu 16.04 LTS):
+`sudo npm install -g ionic`
+
+### For Windows (7, 10):
+In Git Bash terminal, run the following command:
+`npm install -g ionic`
+
+### Creating an Ionic Application Project
+-   Create a free account here and log in: https://creator.ionic.io/app/login
+-   TBD
+
+### Running an Ionic Application
+Ionic is of course launching the JavaScript components of your Ionic application
+on NodeJS on the hood, so you will need install NodeJS
+before using Ionic.
+
+#### For Windows (7, 10):
+`ionic start myIonicApp`
+
+#### For Linux (Ubuntu 16.04 LTS):
+`ionic start myIonicApp`
