@@ -26,27 +26,37 @@ router.get("/apis/aggregate_api", function(httpRequest, httpResponse) {
     var aggregateApiJson = {};
 
     //------------------------------------------------------------------------------
-    // (STEP 1) This is the local API response: Let's add our own
-    // spin to the aggregate API response.
+    // (STEP 1) The local API puts its own information
+    // into the response.
     //------------------------------------------------------------------------------
     aggregateApiJson.localApiJson = { "Hello": "API Aggregation"};
 
     //------------------------------------------------------------------------------
-    // (STEP 2) For remote API 1, let's trying using the free
-    // Star Wars API at https://swapi.co
+    // (STEP 2) For the remote API, let's use one of the free REST APIs at
+    // https://jsonplaceholder.typicode.com/
     //------------------------------------------------------------------------------
-    request("http://www.swapi.co/api/people/1/", function (error, response, body) {
+    request("https://jsonplaceholder.typicode.com/posts/1", function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.info("Accessed Remote API 1.");
+            console.info("Accessed the remote API.");
             // add the json from remote api 1 to
             // the aggregate api
             aggregateApiJson.remoteApi1Json = JSON.parse(body);
+
+            //------------------------------------------------------------------------------
+            // (STEP 3) The local API can modify the remote API response.
+            //------------------------------------------------------------------------------
+
+            // Here we add a new field to the remote API response
+            aggregateApiJson.remoteApi1Json.newField = "We added this field to the remote API response.";
+
+            // Here we modify an existing "title" field in the remote API response
+            aggregateApiJson.remoteApi1Json.title = "We modified this existing field in the remote API response.";
 
             // Now that the aggregate response is built,
             // send it back to the client.
             httpResponse.send(aggregateApiJson);
         } else {
-            console.error("Failed to access Remote API 1.");
+            console.error("Failed to access the remote API.");
         }
     });
 
