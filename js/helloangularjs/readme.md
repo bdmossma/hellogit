@@ -33,7 +33,12 @@ In Git Bash terminal, run the following command:
 
 ## Creating an Ionic Application Project
 -   Create a free account here and log in: https://creator.ionic.io/app/login
--   TBD
+-   Click the + New Project button (select Blank template) and start drag-and-dropping GUI components
+onto the iPhone displayed at center screen.
+
+Please note that each GUI component has settings
+that can be configured and the default iPhone device can be changed in an upper-left dropdown
+menu to several different mobile devices including phones and tablets.
 
 ## Running an Ionic Application
 Ionic launches the JavaScript components of your Ionic application
@@ -45,3 +50,10 @@ to install it before you get started with this example.
 
 ### For Linux (Ubuntu 16.04 LTS):
 `ionic start myIonicApp`
+
+## Deploying an Ionic Application
+### Submit your new app to the Apple App store
+Go [here](http://docs.usecreator.com/docs/submit-your-app-to-the-apple-app-store) for the official guide.
+
+### Submit your new app to the Google Play Store
+Go [here](http://docs.usecreator.com/docs/submit-your-app-to-the-google-play-store) for the official guide.
