@@ -8,9 +8,7 @@ var express = require("express");
 var router = express.Router();
 
 //------------------------------------------------------------------------------
-// API 1 is our own API which simply responds with a JSON message.
-// Unlike API 2, it does not use any other APIs that reside
-// out in the cloud.
+// API 1 simply responds with a JSON message.
 //------------------------------------------------------------------------------
 // URL: http://localhost:8080/apis/api1
 //------------------------------------------------------------------------------

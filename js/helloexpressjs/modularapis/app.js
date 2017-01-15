@@ -7,9 +7,10 @@
 var express = require("express");
 var app = express();
 
-// Let's import the modular APIs 1 & 2 residing in separate
-// JavaScript files.
-// We can omit the ".js" extension.
+//------------------------------------------------------------------------------
+// Let's import modular APIs 1 & 2 from separate JavaScript files.
+// (We can omit the ".js" extension)
+//------------------------------------------------------------------------------
 var api1 = require("./api1");
 var api2 = require("./api2");
 
