@@ -31,17 +31,17 @@ the new Angular version and we can tackle learning it then.
 In Git Bash terminal, run the following command:
 `npm install -g ionic`
 
-### Creating an Ionic Application Project
+## Creating an Ionic Application Project
 -   Create a free account here and log in: https://creator.ionic.io/app/login
 -   TBD
 
-### Running an Ionic Application
+## Running an Ionic Application
 Ionic is of course launching the JavaScript components of your Ionic application
 on NodeJS on the hood, so you will need install NodeJS
 before using Ionic.
 
-#### For Windows (7, 10):
+### For Windows (7, 10):
 `ionic start myIonicApp`
 
-#### For Linux (Ubuntu 16.04 LTS):
+### For Linux (Ubuntu 16.04 LTS):
 `ionic start myIonicApp`
