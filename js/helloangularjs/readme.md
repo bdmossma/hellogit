@@ -69,6 +69,7 @@ using Ionic Creator.
 ### In the Browser (recommended):
 -   `cd myionicapp_v1`
 -   `ionic serve`
+
 ### In Simulator
 -   `cd myionicapp_v1`
 -   `ionic run [ios|android]    # This goes down the rabbit hole, so let's stick to using browser above for now; else you'll have to install platform SDKs`
