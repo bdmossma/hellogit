@@ -37,9 +37,8 @@ In Git Bash terminal, run the following command:
 
 ## Running an Ionic Application
 Ionic launches the JavaScript components of your Ionic application
-on NodeJS under the hood, so you will need install NodeJS
-before using Ionic.  Make sure to check out our [NodeJS Hello World](https://github.com/bdmossma/hellogit/tree/master/js/hellonodejs)
-before you get started with this example.
+on NodeJS under the hood, so please check out our [NodeJS Hello World](https://github.com/bdmossma/hellogit/tree/master/js/hellonodejs)
+to install it before you get started with this example.
 
 ### For Windows (7, 10):
 `ionic start myIonicApp`
