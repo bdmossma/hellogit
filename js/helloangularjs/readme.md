@@ -59,11 +59,10 @@ Do note that it is recommended to build out the GUI your Ionic app using Ionic C
 after that exporting it if you wish. The GUI building part of your app development greatly benefits from
 using Ionic Creator.
 
-### For Windows (7, 10):
+### For Windows (7, 10) or Linux (Ubuntu 16.04 LTS):
 -   `ionic start myionicsapp_v1 /path/to/export    # The last option tells ionic to use the source from the export when creating the new project`
-
-### For Linux (Ubuntu 16.04 LTS):
--   `ionic start myionicsapp_v1 /path/to/export    # The last option tells ionic to use the source from the export when creating the new project`
+-   `cd myionicapp_v1/www    # This holds all of the source for your Ionic app that you care about. Ignore all of the Ionic boilerplate above this subdirectory.`
+-   Recommend opening the above directory in Atom IDE or your favorite text editor.  This will be the central hub for continuing your development.
 
 ## Running an Ionic App on Local Machine
 ### In the Browser (recommended):
