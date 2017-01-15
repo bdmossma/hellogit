@@ -31,7 +31,7 @@ the new Angular version and we can tackle learning it then.
 In Git Bash terminal, run the following command:
 `npm install -g ionic`
 
-## Creating an Ionic Application Project
+## Creating an Ionic App Project
 -   Create a free account here and log in: https://creator.ionic.io/app/login
 -   Click the + New Project button (select Blank template) and start drag-and-dropping GUI components
 onto the iPhone displayed at center screen.
@@ -40,7 +40,7 @@ Please note that each GUI component has settings
 that can be configured and the default iPhone device can be changed in an upper-left dropdown
 menu to several different mobile devices including phones and tablets.
 
-## Exporting an Ionic Application Project
+## Exporting an Ionic App Project
 You can easily export your Ionic app project from Ionic Creator and download it
 to your local machine and run it from there.
 Go [here](http://docs.usecreator.com/docs/exporting) for the official guide.
@@ -56,9 +56,9 @@ to install it before you get started with this example.
 ### For Linux (Ubuntu 16.04 LTS):
 `ionic start MyIonicApp`
 
-## Deploying an Ionic Application
-### Submit your new app to the Apple App store
+## Deploying an Ionic App
+### Submitting to the Apple App store
 Go [here](http://docs.usecreator.com/docs/submit-your-app-to-the-apple-app-store) for the official guide.
 
-### Submit your new app to the Google Play Store
+### Submitting to the Google Play Store
 Go [here](http://docs.usecreator.com/docs/submit-your-app-to-the-google-play-store) for the official guide.
