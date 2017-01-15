@@ -5,8 +5,13 @@ for the front-end by using Ionic and specifically Ionic Creator.
 [Ionic](https://ionicframework.com/) is a powerful framework based on [Apache Cordova](https://cordova.apache.org/)
 which homogenizes function and
 look-and-feel for mobile apps and web apps across all of the major
-mobile device platforms like iOS and Android.  This means you can have a single
-code base but can deploy to any device.
+mobile device platforms like Windows, iOS and Android as well as all of the major browsers.
+This means you can have a single code base but can deploy to any device.
+
+A few advantages of this include:
+-   Faster, cheaper development (you are developing and maintaining only 1 application code base)
+-   Reach the ENTIRE MARKET with your application, NOT just the Apple mobile app market, NOT just the Android mobile app market, NOT just the Windows mobile app market
+-   JavaScript skills only required. You don't have to learn Java or Swift and all of the native Android and iOS frameworks.
 
 [Ionic Creator](http://ionic.io/products/creator) is a web-based IDE created by the Ionic team which provides
 a drag-and-drop GUI builder for your AngularJS applications as well as integrated
