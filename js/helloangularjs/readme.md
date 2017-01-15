@@ -8,9 +8,6 @@ look-and-feel for mobile apps and web apps across all of the major
 mobile device platforms like iOS and Android.  This means you can have a single
 code base but can deploy to any device.
 
-Click [here](https://en.wikipedia.org/wiki/Ionic_(mobile_app_framework)) for a
-Wikipedia overview of the Ionic framework.
-
 [Ionic Creator](http://ionic.io/products/creator) is a web-based IDE created by the Ionic team which provides
 a drag-and-drop GUI builder for your AngularJS applications as well as integrated
 support for AngularJS scripting.
