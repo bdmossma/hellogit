@@ -70,12 +70,12 @@ using Ionic Creator.
 -   `cd myionicapp_v1`
 -   `ionic serve`
 
-### In Simulator
+### In Simulator:
 -   `cd myionicapp_v1`
 -   `ionic run [ios|android]    # This goes down the rabbit hole, so let's stick to using browser above for now; else you'll have to install platform SDKs`
 
 ## Deploying an Ionic App
-### Submitting to the Apple App store
+### Submitting to the Apple App Store
 Go [here](http://docs.usecreator.com/docs/submit-your-app-to-the-apple-app-store) for the official guide.
 
 ### Submitting to the Google Play Store
