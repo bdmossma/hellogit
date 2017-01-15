@@ -1,6 +1,7 @@
 # Hello AngularJS w/ Ionic!
 The hello world demonstrates how easy it is to develop an AngularJS application
-for the front-end by using Ionic and specifically Ionic Creator.
+for the front-end of your product solution by using Ionic and
+specifically Ionic Creator.
 
 [Ionic](https://ionicframework.com/) is a powerful framework based on [Apache Cordova](https://cordova.apache.org/)
 which homogenizes function and
