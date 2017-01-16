@@ -57,9 +57,8 @@ Make sure the following fields are present:
     -   `cd /path/to/a/nodejs/project`
     -    `gcloud app deploy    # PLEASE NOTE: If this is your first deployment, it will take quite a while.`
 
-### Deploy MongoDB Cluster in Google Compute Engine
-TBD
-
-### Visit your Deployed App
+### Visit the Deployed NodeJS App
 Load this URL in your browser:
-https://[YOUR_PROJECT_ID].appspot.com
+https://[PROJECT_ID].appspot.com
+where PROJECT_ID=astral-sorter-155816
+==> https://astral-sorter-155816.appspot.com
