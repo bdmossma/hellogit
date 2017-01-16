@@ -1,7 +1,7 @@
 {
-  "name": "hellomongodb",
+  "name": "hellomongodbcloud",
   "version": "1.0.0",
-  "description": "demonstrates simple CRUD operations with mongodb",
+  "description": "demonstrates simple CRUD operations with mongodb deployed in the cloud",
   "main": "app.js",
   "scripts": {
     "test": "none"

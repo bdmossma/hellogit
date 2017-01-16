@@ -1,13 +1,10 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Please Note: Must install and run MongoDB on your host machine before running this script, else this
-// script will fail to connect to MongoDB.
-// If MongoDB is already installed on your host machine, you can
-// simply run "mongod" from the command line.
+// Please Note: This hello world shows how to write a NodeJS application that
+// uses MongoDB deployed in the cloud.  MongoDB does NOT need to be installed on the
+// local machine for this example.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// This is a mongodb hello world example using the native mongodb client
+// This mongodb hello world example uses the native mongodb client
 // for nodejs. This example will demonstrate how to:
 //     1. connect to the mongodb server; and
 //     2. perform CRUD operations (Create, Read, Update, Delete)
@@ -26,6 +23,19 @@ var connection = mongoClient.connect(url, function(error, db) {
         console.log("ERROR! Failed to connect to mongodb at " + url);
     else
         console.log("Connected to mongodb at " + url);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // EXAMPLE: Login to mongodb
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var username = "mongodbclouduser";
+    var password = "revelinginthe$un";
+    db.authenticate(username, password, function(error, result) {
+        console.log("-----EXAMPLE: Logging into MongoDB------------------------------------------------------------------");
+        if(error)
+            console.log("ERROR! Failed to login to mongodb at " + url);
+        else
+            console.log("Logged into mongodb at " + url);
+    });
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // EXAMPLE: CREATE single record
