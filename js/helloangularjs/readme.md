@@ -88,7 +88,7 @@ using Ionic Creator.
 ## Running an Ionic App on Local Machine
 ### In the Browser (recommended):
 -   `cd myionicapp_v1`
--   `ionic serve`
+-   `ionic serv --address 127.0.0.1`
 
 ### In Simulator (Under Construction):
 -   `cd myionicapp_v1`
