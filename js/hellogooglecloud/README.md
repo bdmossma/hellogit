@@ -33,6 +33,7 @@ need later for deploying your app).
 
 ### For Windows (7, 10):
 -   Download and run the installer from here: https://cloud.google.com/sdk
+   -   PLEASE NOTE: Make sure to select gcloud Beta Commands to be included in the installation.
 -   Run Google Cloud Shell and do the following:
     -   `gcloud init`
     -   `gcloud config set project [PROJECT_ID]`
