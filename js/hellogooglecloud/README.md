@@ -28,23 +28,34 @@ need later for deploying your app).
 ### For Linux (Ubuntu 16.04 LTS):
 -   `apt-get install gcloud`
 -   `gcloud init`
--   `gcloud config set project [PROJECT_ID]
+-   `gcloud config set project [PROJECT_ID]`
 -   `gcloud auth login`
 
 ### For Windows (7, 10):
 -   Download and run the installer from here: https://cloud.google.com/sdk
-   -   PLEASE NOTE: Make sure to select gcloud Beta Commands to be included in the installation.
--   Run Google Cloud Shell and do the following:
+   -   PLEASE NOTE: Make sure to select "gcloud Beta Commands" to be included in the installation.
+-   In Google Cloud SDK Shell, do the following:
     -   `gcloud init`
     -   `gcloud config set project [PROJECT_ID]`
     -   `gcloud auth login`
 
+### Required Google App Engine app.yaml config file
+You'll also need to create a little app.yaml file in your project directory.
+We provide one with this example.  It's like two lines and ridiculously
+simple so we won't say more on it except that you need it
+in order to deploy your app.
+
+### Required fields in your NodeJS package.json config file
+Make sure the following fields are present:
+-   `"engines" : { "node" : "6.9.2" }`
+-   `"scripts": {"start": "node app.js"}`
+
 ## Using Google Cloudo SDK
 
 ### Deploy NodeJS App to Google App Engine
--   In Google Cloud Shell, do the following:
+-   In Google Cloud SDK Shell, do the following:
     -   `cd /path/to/a/nodejs/project`
-    -    `gcloud app deploy`
+    -    `gcloud app deploy    # PLEASE NOTE: If this is your first deployment, it will take quite a while.`
 
 ### Deploy MongoDB Cluster in Google Compute Engine
 TBD
