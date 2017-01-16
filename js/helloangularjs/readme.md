@@ -28,15 +28,30 @@ Ionic launches the JavaScript components of your Ionic application
 on NodeJS under the hood, so please check out our [NodeJS Hello World](https://github.com/bdmossma/hellogit/tree/master/js/hellonodejs)
 to install it before you get started with this example.
 
+Ionic depends upon Cordova which depends upon Android and iOS SDKs, so naturally
+all of these must be installed.  For the near term, we are showing only how to install
+just the Android SDK.  (TODO: Add steps for installing iOS SDK)
+
+PLEASE NOTE: The Android Emulator comes with the Android SDK, so this is effectively
+how Ionic launches an Ionic app -- it deploys it inside of the
+Android emulator or virtual device.
+
 ### For Linux (Ubuntu 16.04 LTS):
 -   `sudo npm install -g ionic    # Be aware that this will take a while`
 -   `npm install -g cordova       # Ionic's biggest dependency is Apache Cordova`
+-   Download the latest Android SDK from here: https://developer.android.com/studio/index.html
+-   `sudo unzip android-studio-ide-<version>-linux.zip -d /opt`
+-   `cd /opt/android-studio/bin`
+-   `sudo ./studio.sh    # This will take a long time.`
 
 ### For Windows (7, 10):
 In Git Bash terminal, run the following command:
 -   `npm install -g ionic      # Be aware that this will take a while`
 -   `npm install -g cordova    # Ionic's biggest dependency is Apache Cordova`
--   Make sure to add "C:\npm" to your Path environment variable!!!
+    -    PLEASE NOTE: Verify that `C:\npm` is added to your Path environment variable!!!
+-   Download the latest Android SDK installer from here: https://developer.android.com/studio/index.html
+    -    Run the installer.  PLEASE NOTE: This will take a long time.
+    -    PLEASE NOTE: Verify that `C:\Android\sdk` and `C:\Program Files\Android\Android Studio\bin` are added to your Path environment variable!!!
 
 ## Creating an Ionic App Project in Ionic Creator
 -   Create a free account here and log in: https://creator.ionic.io/app/login
