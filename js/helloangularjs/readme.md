@@ -43,15 +43,21 @@ Android emulator or virtual device.
 -   `sudo unzip android-studio-ide-<version>-linux.zip -d /opt`
 -   `cd /opt/android-studio/bin`
 -   `sudo ./studio.sh    # This will take a long time.`
+-   Install latest JDK (Java SDK): `sudo apt-get install openjdk-8-jdk`
+    -   `export JAVA_HOME=/usr/lib/jvm/java-8-openjdk`
+    -   `export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin`
+    -   Verify installation: `javac -version`
 
 ### For Windows (7, 10):
 In Git Bash terminal, run the following command:
 -   `npm install -g ionic      # Be aware that this will take a while`
 -   `npm install -g cordova    # Ionic's biggest dependency is Apache Cordova`
     -    PLEASE NOTE: Verify that `C:\npm` is added to your Path environment variable!!!
--   Download the latest Android SDK installer from here: https://developer.android.com/studio/index.html
+-   Optional (Under Construction): Download the latest Android SDK installer from here: https://developer.android.com/studio/index.html
     -    Run the installer.  PLEASE NOTE: This will take a long time.
-    -    PLEASE NOTE: Verify that `C:\Android\sdk` and `C:\Program Files\Android\Android Studio\bin` are added to your Path environment variable!!!
+    -    PLEASE NOTE: Verify that `ANROID_HOME=C:\Android\sdk` environment variable exists!!!
+-   Optional (Under Construction): Download and install the latest JDK (Java SDK) from here: http://download.oracle.com/otn-pub/java/jdk/
+    -    PLEASE NOTE: Verify that `JDK_HOME=C:\Program Files\Java\jdk1.8.0_111` environment variable exists!!!
 
 ## Creating an Ionic App Project in Ionic Creator
 -   Create a free account here and log in: https://creator.ionic.io/app/login
@@ -84,9 +90,14 @@ using Ionic Creator.
 -   `cd myionicapp_v1`
 -   `ionic serve`
 
-### In Simulator:
+### In Simulator (Under Construction):
 -   `cd myionicapp_v1`
--   `ionic run [ios|android]    # This goes down the rabbit hole, so let's stick to using browser above for now; else you'll have to install platform SDKs`
+-   `ionic run [ios|android]    # This is a dubious step.  You may find yourself Googling deeply if an error happens.`
+    -   IMPORTANT[1]: This may error out stating that wrong Android SDK is installed or that license is not accepted for the right version.
+        At any rate, the needed version will be specified. Just go run `C:\Anroid\SDK\SDK Manager.exe` and install and accept
+        the license agreement for everything that is selected.
+    -   IMPORTANT[2]: Should print out "BUILD SUCCESSFUL" and launch Ionic app in Android emulator.
+
 
 ## Deploying an Ionic App
 ### Submitting to the Apple App Store
