@@ -16,26 +16,16 @@ var mongoClient = require("mongodb").MongoClient;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // we must connect to the mongodb server before we can do anything with it
-var url = "mongodb://localhost:27017";
+var username = "mongodbclouduser";
+var password = "revelinginthe$un";
+var url = "mongodb://" + username + ":" + password +
+    "@cluster0-shard-00-00-r75mr.mongodb.net:27017,cluster0-shard-00-01-r75mr.mongodb.net:27017,cluster0-shard-00-02-r75mr.mongodb.net:27017/admin?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin"
 var connection = mongoClient.connect(url, function(error, db) {
     console.log("-----EXAMPLE: CONNECT to MongoDB------------------------------------------------------------------");
     if(error)
         console.log("ERROR! Failed to connect to mongodb at " + url);
     else
         console.log("Connected to mongodb at " + url);
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // EXAMPLE: Login to mongodb
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    var username = "mongodbclouduser";
-    var password = "revelinginthe$un";
-    db.authenticate(username, password, function(error, result) {
-        console.log("-----EXAMPLE: Logging into MongoDB------------------------------------------------------------------");
-        if(error)
-            console.log("ERROR! Failed to login to mongodb at " + url);
-        else
-            console.log("Logged into mongodb at " + url);
-    });
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // EXAMPLE: CREATE single record
