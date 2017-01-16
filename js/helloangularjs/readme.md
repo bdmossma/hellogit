@@ -39,11 +39,11 @@ Android emulator or virtual device.
 ### For Linux (Ubuntu 16.04 LTS):
 -   `sudo npm install -g ionic    # Be aware that this will take a while`
 -   `npm install -g cordova       # Ionic's biggest dependency is Apache Cordova`
--   Download the latest Android SDK from here: https://developer.android.com/studio/index.html
--   `sudo unzip android-studio-ide-<version>-linux.zip -d /opt`
--   `cd /opt/android-studio/bin`
--   `sudo ./studio.sh    # This will take a long time.`
--   Install latest JDK (Java SDK): `sudo apt-get install openjdk-8-jdk`
+-   Optional (Under Construction): Download and install the latest Android SDK from here: https://developer.android.com/studio/index.html
+    -   `sudo unzip android-studio-ide-<version>-linux.zip -d /opt`
+    -   `cd /opt/android-studio/bin`
+    -   `sudo ./studio.sh    # This will take a long time.`
+-   Optional (Under Construction): Install latest JDK (Java SDK): `sudo apt-get install openjdk-8-jdk`
     -   `export JAVA_HOME=/usr/lib/jvm/java-8-openjdk`
     -   `export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin`
     -   Verify installation: `javac -version`
