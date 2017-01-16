@@ -1,7 +1,7 @@
 {
   "name": "hellomongodb",
   "version": "1.0.0",
-  "description": "demonstrates simple CRUD operations with mongodb",
+  "description": "demonstrates simple CRUD operations with mongodb deployed on the local machine",
   "main": "app.js",
   "scripts": {
     "test": "none"

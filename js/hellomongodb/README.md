@@ -1,4 +1,6 @@
 # Hello MongoDB!
+This is a hello world for writing NodeJS applications that use MongoDB
+deployed on the local machine.
 
 ## Install MongoDB
 #### For Linux (Ubuntu 16.04 LTS):
