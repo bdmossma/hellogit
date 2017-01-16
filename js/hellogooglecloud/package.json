@@ -19,9 +19,6 @@
     "url": "https://github.com/bdmossma/hellogit/issues"
   },
   "homepage": "https://github.com/bdmossma/hellogit#readme",
-  "dependencies": {
-      "gcloud": "*"
-  },
   "engines" : { "node" : "6.9.2" },
   "scripts": {"start": "node app.js"}
 }
