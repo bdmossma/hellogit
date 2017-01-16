@@ -39,11 +39,11 @@ Android emulator or virtual device.
 ### For Linux (Ubuntu 16.04 LTS):
 -   `sudo npm install -g ionic    # Be aware that this will take a while`
 -   `npm install -g cordova       # Ionic's biggest dependency is Apache Cordova`
--   Optional (Under Construction): Download and install the latest Android SDK from here: https://developer.android.com/studio/index.html
+-   (Skip This) Download and install the latest Android SDK from here: https://developer.android.com/studio/index.html
     -   `sudo unzip android-studio-ide-<version>-linux.zip -d /opt`
     -   `cd /opt/android-studio/bin`
     -   `sudo ./studio.sh    # This will take a long time.`
--   Optional (Under Construction): Install latest JDK (Java SDK): `sudo apt-get install openjdk-8-jdk`
+-   (Skip This): Install latest JDK (Java SDK): `sudo apt-get install openjdk-8-jdk`
     -   `export JAVA_HOME=/usr/lib/jvm/java-8-openjdk`
     -   `export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin`
     -   Verify installation: `javac -version`
@@ -53,10 +53,10 @@ In Git Bash terminal, run the following command:
 -   `npm install -g ionic      # Be aware that this will take a while`
 -   `npm install -g cordova    # Ionic's biggest dependency is Apache Cordova`
     -    PLEASE NOTE: Verify that `C:\npm` is added to your Path environment variable!!!
--   Optional (Under Construction): Download the latest Android SDK installer from here: https://developer.android.com/studio/index.html
+-   (Skip This) Download the latest Android SDK installer from here: https://developer.android.com/studio/index.html
     -    Run the installer.  PLEASE NOTE: This will take a long time.
     -    PLEASE NOTE: Verify that `ANROID_HOME=C:\Android\sdk` environment variable exists!!!
--   Optional (Under Construction): Download and install the latest JDK (Java SDK) from here: http://download.oracle.com/otn-pub/java/jdk/
+-   (Skip This) Download and install the latest JDK (Java SDK) from here: http://download.oracle.com/otn-pub/java/jdk/
     -    PLEASE NOTE: Verify that `JDK_HOME=C:\Program Files\Java\jdk1.8.0_111` environment variable exists!!!
 
 ## Creating an Ionic App Project in Ionic Creator
@@ -90,7 +90,7 @@ using Ionic Creator.
 -   `cd myionicapp_v1`
 -   `ionic serv --address 127.0.0.1`
 
-### In Simulator (Under Construction):
+### In Simulator (Skip This):
 -   `cd myionicapp_v1`
 -   `ionic run [ios|android]    # This is a dubious step.  You may find yourself Googling deeply if an error happens.`
     -   IMPORTANT[1]: This may error out stating that wrong Android SDK is installed or that license is not accepted for the right version.
