@@ -6,7 +6,7 @@
 //------------------------------------------------------------------------------
 var express = require("express");
 var router = express.Router();
-var db = require("db");
+var db = require("./db");
 
 //------------------------------------------------------------------------------
 // This API does user login.
@@ -20,17 +20,25 @@ router.get("/apis/login/:email/:password", function(httpRequest, httpResponse) {
     // this is just a fun little HTTP (plaintext) example.  Of course, in production,
     // we would use Basic Authentication over HTTPS.
     var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-    console.log("Client " + clientIp + " is trying to login...");
+    console.info("Client " + clientIp + " is trying to login...");
 
-    var jsonResponse = {"hello": "api1"};
+    var nominalResp = { message: "loginResp", token: "" };
+    var errorResp = { message: "loginResp", error: "" };
 
+    // login request MUST contain email and password
     if( "email" && "password" in httpRequest.params) {
-        console.log("Performing login...");
-        db.login(httpRequest.params.email,
-                    httpRequest.params.password,
-                    function(error, status) {
-                        httpResponse.send(jsonResponse);
-                    });
+        console.log("Client presented required parameters. Attempting login...");
+        db.login(httpRequest.params.email, httpRequest.params.password, function(error, token) {
+            if(error) {
+                errorResp.error = error;
+                httpResponse.send(errorResp);
+            } else {
+                nominalResp.token = token;
+                httpResponse.send(nominalResp);
+            }
+        });
+    } else {
+        console.error("Client " + clientIp + " request is missing required parameters.");
     }
 });
 

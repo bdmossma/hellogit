@@ -6,7 +6,7 @@
 //------------------------------------------------------------------------------
 var express = require("express");
 var router = express.Router();
-var db = require("db");
+var db = require("./db");
 
 //------------------------------------------------------------------------------
 // This API does user signup.
@@ -22,17 +22,23 @@ router.get("/apis/signup/:firstName/:lastName/:phone/:email/:password", function
     var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
     console.log("Client " + clientIp + " is trying to sign up...");
 
-    var jsonResponse = {"hello": "api2"};
+    var nominalResp = { "message": "signupResp", "result": "" };
+    var errorResp = { "message": "signupResp", "error": "" };
 
     if( "firstName" && "lastName" && "phone" && "email" && "password" in httpRequest.params) {
-        console.log("Performing signup...");
+        console.log("Client presented required parameters. Attempting signup...");
         db.signup(httpRequest.params.firstName,
                     httpRequest.params.lastName,
                     httpRequest.params.phone,
                     httpRequest.params.email,
-                    httpRequest.params.password,
-                    function(error, status) {
-                        httpResponse.send(jsonResponse);
+                    httpRequest.params.password, function(error, result) {
+                        if(error) {
+                            errorResp.error = error;
+                            httpResponse.send(errorResp);
+                        } else {
+                            nominalResp.result = result;
+                            httpResponse.send(nominalResp);
+                        }
                     });
     }
 
