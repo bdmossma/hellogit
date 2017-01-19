@@ -85,7 +85,7 @@ function createUserAccount(db, firstName, lastName, phone, email, password, onRe
             if(error) {
                 onError("Failed to create new user account.");
             } else {
-                onResult("You are now signed up.");
+                onResult(true);
             }
         }
     );
