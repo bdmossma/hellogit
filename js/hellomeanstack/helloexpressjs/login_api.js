@@ -1,6 +1,6 @@
 
 //------------------------------------------------------------------------------
-// APIs for login and signup are modular APIs residing in the same tier (deployed to
+// APIs for login, signup, and users are modular APIs residing in the same tier (deployed to
 // same machine in the network) with app.js which can simply
 // import and host them.
 //------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 
 //------------------------------------------------------------------------------
-// APIs for login and signup are modular APIs residing in the same tier (deployed to
+// APIs for login, signup, and users are modular APIs residing in the same tier (deployed to
 // same machine in the network) with app.js which can simply
 // import and host them.
 //------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ var mongoInfo = require("./mongodb_info");
 //------------------------------------------------------------------------------
 // URL: https://[PROJECT_ID][appspot.com]/apis/signunp
 // where PROJECT_ID=astral-sorter-155816
-// ==> https://astral-sorter-155816.appspot.com/apis/signUp
+// ==> https://astral-sorter-155816.appspot.com/apis/signup
 //------------------------------------------------------------------------------
 router.get("/apis/signup/:firstName/:lastName/:phone/:email/:password", function(httpRequest, httpResponse) {
     // Regarding Security: Yes, we are actually putting the password in the URL as

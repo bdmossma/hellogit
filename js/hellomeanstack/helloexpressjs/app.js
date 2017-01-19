@@ -25,6 +25,7 @@ var cors = require("cors");
 //------------------------------------------------------------------------------
 var loginApi = require("./login_api");
 var signupApi = require("./signup_api");
+var usersApi = require("./users_api");
 
 
 // inject APIs and plugins into
@@ -32,6 +33,7 @@ var signupApi = require("./signup_api");
 app.use(cors());
 app.use(loginApi);
 app.use(signupApi);
+app.use(usersApi);
 
 app.listen(8080);
 
