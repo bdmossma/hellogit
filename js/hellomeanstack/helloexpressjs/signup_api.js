@@ -21,68 +21,74 @@ router.get("/apis/signup/:firstName/:lastName/:phone/:email/:password", function
     // this is just a fun little HTTP (plaintext) example.  Of course, in production,
     // we would use Basic Authentication over HTTPS.
     var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-    console.log("Client " + clientIp + " is trying to sign up...");
+    console.info("Client " + clientIp + " is trying to sign up...");
 
-    var nominalResp = { "message": "signupResp", "result": "" };
-    var errorResp = { "message": "signupResp", "error": "" };
-
-    if( "firstName" && "lastName" && "phone" && "email" && "password" in httpRequest.params) {
-        console.log("Client presented required parameters. Attempting signup...");
-        signup(httpRequest.params.firstName,
-                httpRequest.params.lastName,
-                httpRequest.params.phone,
-                httpRequest.params.email,
-                httpRequest.params.password, function(error, result) {
-                    if(error) {
-                        errorResp.error = error;
-                        httpResponse.send(errorResp);
-                    } else {
-                        nominalResp.result = result;
-                        httpResponse.send(nominalResp);
-                    }
-                });
-    }
-
+    connectToDatabase(httpRequest.params.firstName,
+        httpRequest.params.lastName,
+        httpRequest.params.phone,
+        httpRequest.params.email,
+        httpRequest.params.password,
+        function(result) {
+            var resultResp = { "message": "signUpResp", "result": result };
+            console.info(resultResp);
+            return httpResponse.send(resultResp);
+        },
+        function(error) {
+            var errorResp = { "message": "signUpResp", "error": error };
+            console.error(errorResp);
+            return httpResponse.send(errorResp);
+        }
+    );
 });
 
-function signup(firstName, lastName, phone, email, password, callback) {
-    mongoClient.connect(mongoInfo.url, function(error, db) {
-        console.log("-----Connecting to MongoDB------------------------------------------------------------------");
-        if(error) {
-            return callback("Server Error: Failed to connect to database!", null);
-        } else {
-            console.log("Connected to database.");
-            var queryFilter = { "recordType": "User Account", "email": email };
-            var queryResultSize = 1;
-            db.collection(mongoInfo.collection).findOne(queryFilter, function(error, userAccount) {
-                console.log("-----Querying MongoDB---------------------------------------------------------------------");
-                if(error) {
-                    var errorMsg = "Server Error: Failed to query database."
-                    console.error(errorMsg);
-                    return callback(errorMsg, null);
-                } else {
-                    if(!userAccount) {
-                        // create user account
-                        var newUserAccount = { "recordType": "User Account", "firstName": firstName, "lastName": lastName, "phone": phone, "email": email, "password": password };
-                        db.collection(mongoInfo.collection).insertOne(newUserAccount, function(error, result) {
-                            console.log("-----Creating Record in Database-------------------------------------------------------------------");
-                            if(error) {
-                                var errorMsg = "Server Error: Failed to create new user account.";
-                                console.error(errorMsg);
-                                return callback(errorMsg, null);
-                            } else {
-                                var resultMsg = "You are now signed up.";
-                                console.info(resultMsg);
-                                return callback(null, resultMsg);
-                            }
-                        });
-                    } else {
-                        return callback("Client Error: A user account already exists for email: " + email, null);
-                    }
-                }
-            });
+// STEP 1: Connect to Database
+function connectToDatabase(firstName, lastName, phone, email, password, onResult, onError) {
+    mongoClient.connect(mongoInfo.url,
+        function(error, db) {
+            console.info("-----Connecting to Database------------------------------------------------------------------");
+            if(error) {
+                onError("Database offline.");
+            } else {
+                console.info("Connected to database.");
+                queryUserAccount(db, firstName, lastName, phone, email, password, onResult, onError);
+            }
         }
-    });
+    );
+}
+
+// STEP 2: Query User Account in Database
+function queryUserAccount(db, firstName, lastName, phone, email, password, onResult, onError) {
+    var queryFilter = { "recordType": "User Account", "email": email };
+    var queryResultSize = 1;
+    db.collection(mongoInfo.collection).findOne(queryFilter,
+        function(error, userAccount) {
+            console.info("-----Querying if User Account already exists in Database----------------------------------------------------------");
+            if(error) {
+                onError("Failed to query database.");
+            } else {
+                if(!userAccount) { // if user account does not already exist, create it
+                    createUserAccount(db, firstName, lastName, phone, email, password, onResult, onError);
+                } else {
+                    onError("A user account already exists for email: " + email);
+                }
+            }
+        }
+    );
+}
+
+// STEP 3: Create User Account
+function createUserAccount(db, firstName, lastName, phone, email, password, onResult, onError) {
+    var newUserAccount = { "recordType": "User Account", "firstName": firstName, "lastName": lastName, "phone": phone, "email": email, "password": password };
+    db.collection(mongoInfo.collection).insertOne(newUserAccount,
+        function(error, result) {
+            console.info("-----Creating User Account in Database-------------------------------------------------------------------");
+            if(error) {
+                onError("Failed to create new user account.");
+            } else {
+                onResult("You are now signed up.");
+            }
+        }
+    );
 }
 
 module.exports = router
