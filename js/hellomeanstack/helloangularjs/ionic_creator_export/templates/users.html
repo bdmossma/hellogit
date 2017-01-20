@@ -1,0 +1,14 @@
+<ion-view title="Users" hide-back-button="true" id="page7">
+  <ion-nav-buttons side="left" class="has-header">
+    <button class="button button-icon icon ion-ios-arrow-back" ng-click="goToHome()"> Back</button>
+  </ion-nav-buttons>
+  <ion-content padding="true" class="has-header">
+    <div id="users-markdown8" ng-model="userData.users" class="show-list-numbers-and-dots"></div>
+    <button id="users-button5" ng-click="downloadUsers()" style="border-radius:0px 0px 0px 0px;" class="button button-dark  button-block icon ion-ios-cloud-download-outline"></button>
+    <div class="spacer" style="width: 300px; height: 10px;"></div>
+    <ion-item class="item-icon-left" collection-repeat="user in users">
+      <i class="icon ion-android-person">
+      </i>{{user}}
+    </ion-item>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-view title="Home" hide-back-button="true" id="page4" style="background-color:#387EF5;">
+  <ion-nav-buttons side="left" class="has-header">
+    <button class="button button-icon icon ion-navicon" ng-click="goToMenu()"></button>
+  </ion-nav-buttons>
+  <ion-content padding="true" class="has-header">
+    <ion-list id="home-list1" ng-hide="hideMenu">
+      <ion-item class="item-icon-left" id="home-list-item23" ui-sref="users">
+        <i class="icon ion-person-stalker"></i>Users
+        <ion-option-button class="button-positive"></ion-option-button>
+      </ion-item>
+      <ion-item class="item-icon-left" id="home-list-item22" ui-sref="about">
+        <i class="icon ion-ios-information-outline"></i>About
+        <ion-option-button class="button-positive"></ion-option-button>
+      </ion-item>
+      <ion-item class="item-icon-left" id="home-list-item21" ui-sref="login">
+        <i class="icon ion-log-out"></i>Logout</ion-item>
+    </ion-list>
+    <div class="spacer" style="height: 150px;"></div>
+    <div>
+      <img src="img/VLPXihVT9KWocdookQWT_ionicLogoVerticalWhite.png" style="display: block; width: 50%; height: 50%; margin-left: auto; margin-right: auto;">
+    </div>
+    <div class="spacer" style="height: 100px;"></div>
+  </ion-content>
+</ion-view>

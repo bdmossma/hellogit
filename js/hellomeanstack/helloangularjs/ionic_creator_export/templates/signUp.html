@@ -1,0 +1,34 @@
+<ion-view title="Sign Up" hide-nav-bar="true" id="page2">
+  <ion-content padding="true" class="manual-ios-statusbar-padding">
+    <form id="signUp-form5" class="list">
+      <div class="spacer" style="height: 25px;"></div>
+      <div>
+        <img src="img/by3HwNWCTNyDffA2eSHE_ionicLogoHorizontal.png" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+      </div>
+      <div class="spacer" style="height: 25px;"></div>
+      <label class="item item-input" id="signUp-input8">
+        <input type="text" placeholder="First Name" ng-model="signupData.firstName">
+      </label>
+      <label class="item item-input" id="signUp-input9">
+        <input type="text" placeholder="Last Name" ng-model="signupData.lastName">
+      </label>
+      <label class="item item-input" id="signUp-input10">
+        <input type="text" placeholder="Phone" ng-model="signupData.phone">
+      </label>
+      <label class="item item-input" id="signUp-input7">
+        <input type="text" placeholder="Email" ng-model="signupData.email">
+      </label>
+      <label class="item item-input" id="signUp-input6">
+        <input type="password" placeholder="Password" ng-model="signupData.password">
+      </label>
+      <label class="item item-input" id="signUp-input11">
+        <input type="password" placeholder="Confirm Password" ng-model="signupData.confirmPassword">
+      </label>
+      <button id="signUp-button2" ng-click="signup()" style="border-radius:9px 9px 9px 9px;" class="button button-positive  button-block">Sign up</button>
+      <div>
+        <a>Already have an account? </a>
+        <a ui-sref="login">Login</a>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

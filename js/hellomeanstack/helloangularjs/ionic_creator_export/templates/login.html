@@ -1,0 +1,23 @@
+<ion-view title="Login" hide-nav-bar="true" id="page1">
+  <ion-content padding="true" class="manual-ios-statusbar-padding">
+    <form id="login-form6" class="list">
+      <div class="spacer" style="height: 50px;"></div>
+      <div>
+        <img src="img/K15cxFRoTCahBg4L0Xwu_ionicLogoVertical.png" style="display: block; width: 50%; height: 50%; margin-left: auto; margin-right: auto;">
+      </div>
+      <div class="spacer" style="height: 50px;"></div>
+      <label class="item item-input" id="login-input13">
+        <input type="text" placeholder="Email" ng-model="loginData.email">
+      </label>
+      <label class="item item-input" id="login-input14">
+        <input type="password" placeholder="Password" ng-model="loginData.password">
+      </label>
+      <button id="login-button3" ng-click="login()" class="button button-positive  button-block">Login</button>
+      <div>
+        <a>Don't have an account? </a>
+        <a ui-sref="signUp">Sign Up</a>
+      </div>
+      <div class="spacer" style="height: 50px;"></div>
+    </form>
+  </ion-content>
+</ion-view>
