@@ -6,15 +6,12 @@
 //------------------------------------------------------------------------------
 var express = require("express");
 var router = express.Router();
-var mongoClient = require("mongodb").MongoClient;// native mongodb client
-var mongoInfo = require("./mongodb_info");
+var db = require("./db");
 
 //------------------------------------------------------------------------------
 // This API does user login.
 //------------------------------------------------------------------------------
-// URL: https://[PROJECT_ID][appspot.com]/apis/login
-// where PROJECT_ID=astral-sorter-155816
-// ==> https://astral-sorter-155816.appspot.com/apis/login
+// API URL: https://[Base URL]/apis/login
 //------------------------------------------------------------------------------
 router.get("/apis/login/:email/:password",
     function(httpRequest, httpResponse) {
@@ -42,21 +39,17 @@ router.get("/apis/login/:email/:password",
 
 // STEP 1: Connect to Database
 function connectToDatabase(email, password, onResult, onError) {
-    mongoClient.connect(mongoInfo.url,
-        function(error, db) {
-            console.info("-----Connecting to Database------------------------------------------------------------------");
-            if(error) {
-                onError("Database offline.");
-            } else {
-                console.log("Connected to database.");
-                queryUserAccount(db, email, password, onResult, onError);
-            }
-        }
-    );
+    console.info("-----Connecting to Database------------------------------------------------------------------");
+    if(error) {
+        onError("Database offline.");
+    } else {
+        console.log("Connected to database.");
+        queryUserAccount(email, password, onResult, onError);
+    }
 }
 
 // STEP 2: Query User Account in Database
-function queryUserAccount(db, email, password, onResult, onError) {
+function queryUserAccount(email, password, onResult, onError) {
     var queryFilter = { "recordType": "User Account", "email": email };
     var queryResultSize = 1;
     db.collection(mongoInfo.collection).findOne(queryFilter,
