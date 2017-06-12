@@ -19,7 +19,7 @@ router.get("/apis/users",
         var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
         console.info("Client " + clientIp + " is trying to login...");
 
-        var users = db.users()
+        var users = db.getUsers()
     	if(users) {
             var resultResp = { "message": "usersResp", "result": users };
             console.info(resultResp);

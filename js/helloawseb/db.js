@@ -3,27 +3,26 @@
 // storing data.
 
 var usersMap = new Map();
-addUser("otis.milo@email.com", "bla");
-addUser("daisy.duke@email.com", "bla");
 
-logUsers();
+function getUsers() {
+	var users = [];
+	for (var [key, value] of usersMap.entries()) {
+		users.push({ key : value });
+	}
+	return users;
+}
 
 function logUsers() {
 	console.log("Users:");
-	usersMap.forEach(function(value, key) {
-	  console.log(key + ": " + JSON.stringify(value));
-	});
-}
-
-function users() {
-	return JSON.stringify(usersMap);
+	var users = getUsers();
+	console.log(users);
 }
 
 function userExists(email) {
 	return usersMap.has(email);
 }
 
-function addUser(email, password) {
+function signUpUser(email, password) {
 	usersMap.set(email, { "password" : password, "loggedIn" : false});
 }
 
@@ -57,9 +56,13 @@ function logOutUser(email) {
 	return true;
 }
 
+signUpUser("otis.milo@email.com", "bla");
+signUpUser("daisy.duke@email.com", "bla");
+logUsers();
+
 module.exports.logUsers = logUsers;
-module.exports.users = users;
+module.exports.getUsers = getUsers;
 module.exports.userExists = userExists;
-module.exports.addUser = addUser;
+module.exports.signUpUser = signUpUser;
 module.exports.logInUser = logInUser;
 module.exports.logOutUser = logOutUser;

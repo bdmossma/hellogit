@@ -22,7 +22,7 @@ router.get("/apis/signup/:firstName/:lastName/:phone/:email/:password",
 	    var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
 	    console.info("Client " + clientIp + " is trying to sign up...");
 
-	    var signedUp = db.addUser(httpRequest.params.firstName, httpRequest.params.lastName, httpRequest.params.phone, httpRequest.params.email, httpRequest.params.password);
+	    var signedUp = db.signUpUser(httpRequest.params.firstName, httpRequest.params.lastName, httpRequest.params.phone, httpRequest.params.email, httpRequest.params.password);
 	    if(signedUp) {
 	            var resultResp = { "message": "signUpResp", "result": result };
 	            console.info(resultResp);
