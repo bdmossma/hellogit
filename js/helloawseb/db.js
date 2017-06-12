@@ -6,13 +6,17 @@ var usersMap = new Map();
 addUser("otis.milo@email.com", "bla");
 addUser("daisy.duke@email.com", "bla");
 
-console.log("Users:");
-printUsers();
+logUsers();
 
-function printUsers() {
+function logUsers() {
+	console.log("Users:");
 	usersMap.forEach(function(value, key) {
 	  console.log(key + ": " + JSON.stringify(value));
 	});
+}
+
+function users() {
+	return JSON.stringify(usersMap);
 }
 
 function userExists(email) {
@@ -53,7 +57,8 @@ function logOutUser(email) {
 	return true;
 }
 
-module.exports.printUsers = printUsers;
+module.exports.logUsers = logUsers;
+module.exports.users = users;
 module.exports.userExists = userExists;
 module.exports.addUser = addUser;
 module.exports.logInUser = logInUser;
