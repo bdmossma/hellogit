@@ -20,18 +20,10 @@ router.get("/apis/login/:email/:password",
         // this is just a fun little HTTP (plaintext) example.  Of course, in the real world,
         // we would use HTTPS and authenticate users securely.
         var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-        console.info("Client " + clientIp + " is trying to login...");
+        console.info("Client " + clientIp + " is trying to log in...");
 
-        var loggedIn = db.logInUser(httpRequest.params.email,httpRequest.params.password);
-		if(loggedIn) {
-                var resultResp = { "message": "loginResp", "result": result };
-                console.info(resultResp);
-				return httpResponse.send(resultResp);
-        } else {
-                var errorResp = { "message": "loginResp", "error": "Login failed." };
-                console.error(errorResp);
-				return httpResponse.send(errorResp);
-    	}
+        var [result, resultMsg] = db.logInUser(httpRequest.params.email, httpRequest.params.password);
+		return httpResponse.send({ "message": "logInResp","result": result, "resultMsg": resultMsg });
     }
 );
 

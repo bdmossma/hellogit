@@ -24,16 +24,20 @@ var cors = require("cors");
 // (We can omit the ".js" extension)
 //------------------------------------------------------------------------------
 var loginApi = require("./login_api");
+var logoutApi = require("./logout_api");
 var signupApi = require("./signup_api");
 var usersApi = require("./users_api");
+var deleteUserApi = require("./delete_user_api");
 
 
 // inject APIs and plugins into
 // ExpressJS framework
 app.use(cors());
 app.use(loginApi);
+app.use(logoutApi);
 app.use(signupApi);
 app.use(usersApi);
+app.use(deleteUserApi);
 
 app.listen(8080);
 

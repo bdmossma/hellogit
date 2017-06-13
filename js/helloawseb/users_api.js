@@ -12,12 +12,12 @@ var db = require("./db");
 // This API does user login.
 //------------------------------------------------------------------------------
 // API URL:
-// https://[Base URL]/users
+// https://[Base URL]/apis/users
 //------------------------------------------------------------------------------
 router.get("/apis/users",
     function(httpRequest, httpResponse) {
         var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-        console.info("Client " + clientIp + " is trying to login...");
+        console.info("Client " + clientIp + " is trying to query users...");
 
         var users = db.getUsers()
     	if(users) {
