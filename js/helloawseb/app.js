@@ -18,6 +18,8 @@ var app = express();
 // iframes, and videos.
 //------------------------------------------------------------------------------
 var cors = require("cors");
+app.use(cors());
+
 
 //------------------------------------------------------------------------------
 // Let's import modular APIs for login and signup from separate JavaScript files.
@@ -30,9 +32,7 @@ var usersApi = require("./users_api");
 var deleteUserApi = require("./delete_user_api");
 
 
-// inject APIs and plugins into
-// ExpressJS framework
-app.use(cors());
+// plug the APIs into the ExpressJS framework
 app.use(loginApi);
 app.use(logoutApi);
 app.use(signupApi);
