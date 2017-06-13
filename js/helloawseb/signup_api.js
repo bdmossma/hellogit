@@ -12,9 +12,9 @@ var db = require("./db");
 // This API does user signup.
 //------------------------------------------------------------------------------
 // API URL:
-// https://[Base URL]/apis/signup/:firstName/:lastName/:phone/:email/:password
+// https://[Base URL]/apis/signup/:email/:firstName/:lastName/:phone/:password
 //------------------------------------------------------------------------------
-router.get("/apis/signup/:firstName/:lastName/:phone/:email/:password",
+router.get("/apis/signup/:email/:firstName/:lastName/:phone/:password",
 	function(httpRequest, httpResponse) {
 	    // Regarding Security: Yes, we are actually putting the password in the URL as
 	    // this is just a fun little HTTP (plaintext) example.  Of course, in production,
@@ -22,7 +22,7 @@ router.get("/apis/signup/:firstName/:lastName/:phone/:email/:password",
 	    var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
 	    console.info("Client " + clientIp + " is trying to sign up...");
 
-	    var signedUp = db.signUpUser(httpRequest.params.firstName, httpRequest.params.lastName, httpRequest.params.phone, httpRequest.params.email, httpRequest.params.password);
+	    var signedUp = db.signUpUser(httpRequest.params.email, httpRequest.params.firstName, httpRequest.params.lastName, httpRequest.params.phone, httpRequest.params.password);
 	    if(signedUp) {
 	            var resultResp = { "message": "signUpResp", "result": result };
 	            console.info(resultResp);
