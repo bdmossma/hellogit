@@ -9,9 +9,9 @@ function getUsers() {
 }
 
 function logUsers() {
-	console.log("Users:");
+	console.info("Users:");
 	var users = getUsers();
-	console.log(users);
+	console.info(users);
 }
 
 function userExists(email) {
@@ -19,46 +19,70 @@ function userExists(email) {
 }
 
 function signUpUser(email, firstName, lastName, phone, password) {
-	if(!userExists(email)) {
-		usersMap.set(email, { "firstName" : firstName, "lastName" : lastName, "phone" : phone, "password" : password, "loggedIn" : false});
-		console.log("Signed up user with email " + email);
-		return true;
-	} else {
-		console.log("User with email " + email + " already signed up. Unable to sign up again.");
-		return false;
+	var status = "OK";
+
+	if(userExists(email)) {
+		status = "User already signed up.";
+		console.error("Failed to sign up user with email " + email + ". " + status);
+		return [false, status];
 	}
+
+	usersMap.set(email, { "firstName" : firstName, "lastName" : lastName, "phone" : phone, "password" : password, "loggedIn" : false});
+	console.info("Signed up user with email " + email);
+	return [true, status];
 }
 
 function removeUser(email) {
-	console.log("Removed user with email " + email);
-	usersMap.delete(email);
+	var status = "OK";
+
+	if(!userExists(email)) {
+		usersMap.delete(email);
+		status = "User is not signed up";
+		console.error("Failed to remove user with email " + email + ". " + status);
+		return [false, status];
+	}
+
+	return [true, status];
 }
 
 function logInUser(email, password) {
+	var status = "OK";
+
     if(!userExists(email)) {
-		console.log("Failed to log in user with email " + email + ". User is not signed up.");
-		return false;
+		status = "User is not signed up";
+		console.error("Failed to log in user with email " + email + ". " + status);
+		return [false, status];
 	}
 
 	if(password != usersMap.get(email).password) {
-		console.log("Failed to log in user with email " + email + ". Incorrect password.");
-		return false;
+		status = "Incorrect password";
+		console.error("Failed to log in user with email " + email + ". " + status);
+		return [false, status];
 	}
 
 	usersMap.get(email).loggedIn = true;
-	console.log("Logged in user with email " + email);
-	return true;
+	console.info("Logged in user with email " + email);
+	return [true, status];
 }
 
-function logOutUser(email) {
+function logOutUser(email, password) {
+	var status = "OK";
+
 	if(!userExists(email)) {
-		console.log("Failed to log out user with email " + email + ". User is not signed up.");
-		return false;
+		status = "User is not signed up";
+		console.error("Failed to log out user with email " + email + ". " + status);
+		return [false, status];
+	}
+
+	if(password != usersMap.get(email).password) {
+		status = "Incorrect password";
+		console.error("Failed to log out user with email " + email + ". " + status);
+		return [false, status];
 	}
 
 	usersMap.get(email).loggedIn = false;
-	console.log("Logged out user with email " + email);
-	return true;
+	console.info("Logged out user with email " + email);
+	return [true, status];
 }
 
 // for kicks and giggles, let's start out with a few users

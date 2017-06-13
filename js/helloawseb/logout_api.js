@@ -9,12 +9,12 @@ var router = express.Router();
 var db = require("./db");
 
 //------------------------------------------------------------------------------
-// This API does user log in.
+// This API does user log out.
 //------------------------------------------------------------------------------
 // API URL:
-// https://[Base URL]/apis/login/:email/:password
+// https://[Base URL]/apis/logout/:email/:password
 //------------------------------------------------------------------------------
-router.get("/apis/login/:email/:password",
+router.get("/apis/logout/:email/:password",
     function(httpRequest, httpResponse) {
         // Regarding Security: Yes, we are actually putting the password in the URL as
         // this is just a fun little HTTP (plaintext) example.  Of course, in the real world,
@@ -22,13 +22,13 @@ router.get("/apis/login/:email/:password",
         var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
         console.info("Client " + clientIp + " is trying to login...");
 
-        var loggedIn = db.logInUser(httpRequest.params.email,httpRequest.params.password);
+        var loggedIn = db.logOutUser(httpRequest.params.email, httpRequest.params.password);
 		if(loggedIn) {
-                var resultResp = { "message": "loginResp", "result": result };
+                var resultResp = { "message": "logOutResp", "result": loggedIn };
                 console.info(resultResp);
 				return httpResponse.send(resultResp);
         } else {
-                var errorResp = { "message": "loginResp", "error": "Login failed." };
+                var errorResp = { "message": "logOutResp", "error": loggedIn};
                 console.error(errorResp);
 				return httpResponse.send(errorResp);
     	}
