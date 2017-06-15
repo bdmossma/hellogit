@@ -1,4 +1,6 @@
 
+var crypto = require("crypto");
+
 // This module acts like a mock database for
 // storing data.
 
@@ -21,7 +23,7 @@ function userExists(email) {
 }
 
 // @returns [result, resultMsg]
-function signUpUser(email, firstName, lastName, phone, password) {
+function signUpUser(email, firstName, lastName, password) {
 	var resultMsg = "OK";
 
 	if(userExists(email)) {
@@ -30,7 +32,7 @@ function signUpUser(email, firstName, lastName, phone, password) {
 		return [false, resultMsg];
 	}
 
-	usersMap.set(email, { "firstName" : firstName, "lastName" : lastName, "phone" : phone, "password" : password, "loggedIn" : false});
+	usersMap.set(email, { "firstName" : firstName, "lastName" : lastName, "password" : password, "loggedIn" : false, "authToken" : "none", "authTokenExp" : "none"});
 	console.info("Signed up user with email " + email);
 	return [true, resultMsg];
 }
@@ -56,6 +58,37 @@ function deleteUser(email, password) {
 	return [true, resultMsg];
 }
 
+// @returns authToken
+function genAuthToken() {
+	crypto.randomBytes(48, function(error, buffer) {
+		var authToken = buffer.toString('hex')
+	    return authToken;
+	});
+}
+
+// @returns [error, authTokenExp]
+function genAuthTokenExp() {
+	var currentTime = Math.floor(Date.now()/1000);// in seconds
+	var authTokenExp = currentTime + 60*5;//have to log in again after 5 minutes
+	return authTokenExp;
+}
+
+function checkIfAuthTokensExpired() {
+	console.info("Checking if any auth tokens expired");
+	var currentTime = Math.floor(Date.now()/1000);// in seconds
+	usersMap.forEach(function(value, key) {
+		if(key.loggedIn === true) {
+			console.log("currentTime: " + currentTime);
+			console.log("authTokenExp: " + value.authTokenExp);
+			if(currentTime > value.authTokenExp) {
+				key.loggedIn = false;
+				key.authToken = "none";
+				key.authTokenExp = "none";
+			}
+		}
+	});
+}
+
 // @returns [result, resultMsg]
 function logInUser(email, password) {
 	var resultMsg = "OK";
@@ -72,6 +105,8 @@ function logInUser(email, password) {
 		return [false, resultMsg];
 	}
 
+	usersMap.get(email).authToken = genAuthToken();
+	usersMap.get(email).authTokenExp = genAuthTokenExp();
 	usersMap.get(email).loggedIn = true;
 	console.info("Logged in user with email " + email);
 	return [true, resultMsg];
@@ -99,9 +134,10 @@ function logOutUser(email, password) {
 }
 
 // for kicks and giggles, let's start out with a few users
-signUpUser("otis.milo@email.com", "Otis", "Milo", "111-111-1111", "password");
-signUpUser("daisy.duke@email.com", "Daisy", "Duke", "222-222-2222", "password");
+signUpUser("otis.milo@email.com", "Otis", "Milo", "password");
+signUpUser("daisy.duke@email.com", "Daisy", "Duke", "password");
 logUsers();
+setInterval(checkIfAuthTokensExpired, 5000);// check ever 5 seconds
 
 // decide what to export from this module
 // for use in other modules
