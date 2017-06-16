@@ -6,15 +6,21 @@ var crypto = require("crypto");
 
 var usersMap = new Map();
 
-// @returns Users as String
+// @returns [result, resultMsg]
 function getUsers() {
-	return JSON.stringify([...usersMap]);
+	var resultMsg = "OK";
+	if(usersMap.size == 0) {
+		resultMsg = "No users signed up";
+		console.error(resultMsg);
+		return [false, resultMsg]
+	}
+	return [true, JSON.stringify([...usersMap])];
 }
 
 function logUsers() {
 	console.info("Users:");
-	var users = getUsers();
-	console.info(users);
+	var [result, resultMsg] = getUsers();
+	console.info(resultMsg);
 }
 
 // @returns True|False

@@ -17,18 +17,12 @@ var db = require("./db");
 router.get("/apis/users",
     function(httpRequest, httpResponse) {
         var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-        console.info("Client " + clientIp + " is trying to query users...");
+        console.info("Client " + clientIp + " is trying to list users...");
 
-        var users = db.getUsers()
-    	if(users) {
-            var resultResp = { "message": "usersResp", "result": users };
+        var [result, resultMsg] = db.getUsers();
+            var resultResp = { "message": "usersResp", "result": result, "resultMsg" : resultMsg };
             console.info(resultResp);
             return httpResponse.send(resultResp);
-	    } else {
-            var errorResp = { "message": "usersResp", "error": "Failed to get users." };
-            console.error(errorResp);
-            return httpResponse.send(errorResp);
-        }
 	}
 );
 
