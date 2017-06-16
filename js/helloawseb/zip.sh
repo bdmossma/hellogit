@@ -1,3 +1,8 @@
 #! /bin/bash
 
-7z a -x!node_modules -x!deploy.sh helloawseb.zip *
+if [ $# -eq 0 ]; then
+	echo "Error: Version must be provided."
+	exit 0
+fi
+
+7z a -x!node_modules -x!deploy.sh "helloawseb-v$1.zip" *
