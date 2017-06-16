@@ -14,12 +14,12 @@ function getUsers() {
 		console.error(resultMsg);
 		return [false, resultMsg]
 	}
-	return [true, JSON.stringify([...usersMap])];
+	return [true, [...usersMap]);
 }
 
 function logUsers() {
 	console.info("Users:");
-	var [result, resultMsg] = getUsers();
+	var [result, resultMsg] = JSON.stringify(getUsers());
 	console.info(resultMsg);
 }
 
