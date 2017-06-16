@@ -22,16 +22,10 @@ router.get("/apis/signup/:email/:firstName/:lastName/:password",
 	    var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
 	    console.info("Client " + clientIp + " is trying to sign up...");
 
-	    var signedUp = db.signUpUser(httpRequest.params.email, httpRequest.params.firstName, httpRequest.params.lastName, httpRequest.params.password);
-	    if(signedUp) {
-	            var resultResp = { "message": "signUpResp", "result": result };
-	            console.info(resultResp);
-				return httpResponse.send(resultResp);
-	    } else {
-	            var errorResp = { "message": "signUpResp", "error": "An account already exists for this email." };
-	            console.error(errorResp);
-				return httpResponse.send(errorResp);
-	    }
+	    var [result, resultMsg] = db.signUpUser(httpRequest.params.email, httpRequest.params.firstName, httpRequest.params.lastName, httpRequest.params.password);
+		var resultResp = { "message": "signUpResp", "result": result, "resultMsg" : resultMsg };
+		console.info(resultResp);
+		return httpResponse.send(resultResp);
 	}
 );
 
