@@ -14,13 +14,15 @@ function getUsers() {
 		console.error(resultMsg);
 		return [false, resultMsg]
 	}
-	return [true, [...usersMap]);
+	return [true, [...usersMap]];
 }
 
 function logUsers() {
 	console.info("Users:");
-	var [result, resultMsg] = JSON.stringify(getUsers());
-	console.info(resultMsg);
+	var [result, resultMsg] = getUsers();
+	if(result) {
+		console.log(JSON.stringify(resultMsg));
+	}
 }
 
 // @returns True|False
