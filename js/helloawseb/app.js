@@ -39,6 +39,6 @@ app.use(signupApi);
 app.use(usersApi);
 app.use(deleteUserApi);
 
-app.listen(8080);
+app.listen(process.env.PORT || 8080);
 
-console.log("ExpressJS App running on Port 8080");
+console.log("ExpressJS App running on Port " + JSON.stringify(process.env.PORT || 8080));
