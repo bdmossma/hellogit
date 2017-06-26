@@ -8,13 +8,15 @@
 // not demonstrating real classes, so inheritance and
 // polymorphism are NOT supported.
 
-var Cat = require("./cat").Cat;
-var Dog = require("./dog").Dog;
+var cat = require("./cat").Cat;
+var dog = require("./dog").Dog;
 
-var dog = Dog;
+// Note that cat and dog cannot be instantiated. They are already instantiated
+// and they are singletons. After all, they're not really classes, rather they are
+// objects right away -- they were instantiated as JSON objects as soon as we
+// defined them in the cat.js and dog.js modules.
 dog.name = "Bingo";
 console.log("Renamed dog to: " + dog.name);
 dog.talk();
 
-let cat = Cat;
 cat.talk();
