@@ -1,29 +1,20 @@
 
-"use strict";
+// This example app demonstrates javascript classes
+// by using JSON instead of using
+// ES6 javascript.  This is helpful as support for ES6 in
+// front-end javascript (vs back-end nodejs) in browsers and
+// hybrid mobile app frameworks limited.
+// Obviously, this example is simulating classes, it is
+// not demonstrating real classes, so inheritance and
+// polymorphism are NOT supported.
 
-var Animal = require("./animal").Animal;
 var Cat = require("./cat").Cat;
 var Dog = require("./dog").Dog;
-var Bird = require("./bird").Bird;
 
-
-// Do something with the Animal base class
-let animal = new Animal("Lassie");
-console.log("Created animal named: " + animal.name);
-
-animal.name = "Bingo";
-console.log("Renamed animal to: " + animal.name);
-
-// Do something with the derived classes
-let cat = new Cat("Garfield");
-cat.talk();
-
-let dog = new Dog("Jock");
+var dog = Dog;
+dog.name = "Bingo";
+console.log("Renamed dog to: " + dog.name);
 dog.talk();
 
-// Do something withi a bad derived class
-// that forgot to implement an interface declared
-// in the base class.
-// This should throw an error.
-let bird = new Bird("Polly");
-bird.talk();
+let cat = Cat;
+cat.talk();

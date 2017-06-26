@@ -1,13 +1,10 @@
 
-"use strict";
-
-var Animal = require("./animal.js").Animal;
-
-// This class showcases class inheritance
-class Cat extends Animal {
-	talk() {
-		console.log(this.name + " says Meow!");
-	}
+var Cat = {
+	name: "Cat",
+    sound: "meow",
+    talk: function () {
+        console.log(this.name + " says " + this.sound);
+    }
 }
 
 exports.Cat = Cat
