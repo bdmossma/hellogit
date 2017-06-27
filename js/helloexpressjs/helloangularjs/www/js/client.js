@@ -27,15 +27,17 @@ class SimpleExpression {
 	}
 	buildOperatorHtml(options) {
 		var operatorHtml = '<select name="Operators">';
-		for (var option in options) {
-		    operatorHtml += '<option value=">">' + option + '</option>';
-	    }
+		options.forEach(
+			function (option) {
+		    	operatorHtml += '<option value=">">' + option + '</option>';
+	    	}
+		);
 		operatorHtml += '</select>';
 		return operatorHtml;
 	}
 	buildArgumentHtml(units, attributes) {
 		var argumentHtml = '<input ' + this.attributesHtml(attributes) + '" style="width:75px" required>';
-		argumentHtml += '<label> ' + units + '</label>';
+		argumentHtml += '<label> ' + units + ' </label>';
 		return argumentHtml;
 	}
 
@@ -57,7 +59,7 @@ class SimpleExpression {
 	// This is the heart of the template
 	// design pattern.
 	html() {
-		var html = '<form id="' + this.name + '" name="' + this.name + '">';
+		var html = '<form id="' + this.name + '" name="' + this.name + '" style="background-color:D3D3D3;height:30px;float:left">';
 		html += this.operandHtml();
 		html += this.operatorHtml();
 		html += this.argumentHtml();
@@ -87,21 +89,23 @@ class Latitude extends SimpleExpression {
 
 	argumentHtml() {
 		var argumentHtml = "";
-		argumentHtml += super.buildArgumentHtml("degrees", [["value",this.degrees], ["placeholder","degrees"],["min","-180"], ["max","180"]]);
-		argumentHtml += super.buildArgumentHtml("minutes", [["value",this.minutes], ["placeholder","minutes"],["min","0"], ["max","60"]]);
-		argumentHtml += super.buildArgumentHtml("seconds", [["value",this.seconds], ["placeholder","seconds"],["min","0"], ["max","60"]]);
+		argumentHtml += super.buildArgumentHtml("degrees", [["value",this.degrees], ["placeholder","0"],["min","-180"], ["max","180"]]);
+		argumentHtml += super.buildArgumentHtml("minutes", [["value",this.minutes], ["placeholder","0"],["min","0"], ["max","60"]]);
+		argumentHtml += super.buildArgumentHtml("seconds", [["value",this.seconds], ["placeholder","0"],["min","0"], ["max","60"]]);
 		return argumentHtml;
 	}
 }
 
-
-var lat = new Latitude("180", "30", "60");// input value wins
-console.log(lat.html());
-
-var lat2 = new Latitude();// inpnut placeholder wins
-console.log(lat2.html());
-
 var app = angular.module('myApp', []);
-app.controller('myController', function($scope) {
+app.controller('myController', function($scope, $compile) {
     $scope.test = "Hello AngularJS";
+
+	var lat = new Latitude("180", "30", "60");// input value wins
+	var latCompiledHtml = $compile(lat.html())($scope);//dynamically modify the html
+	angular.element(document.getElementById("playground")).append(latCompiledHtml);
+
+	var lat2 = new Latitude();// inpnut placeholder wins
+	var lat2CompiledHtml = $compile(lat2.html())($scope);//dynamically modify the html
+	angular.element(document.getElementById("playground")).append(lat2CompiledHtml);
+
 });
