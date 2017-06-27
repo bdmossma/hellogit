@@ -1,9 +1,10 @@
 <html>
     <head>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js"></script>
         <script src="/client.js"></script>
     </head>
-    <body>
-        <h2>Hello ExpressJS</h2>
-        <div id="playground"></div>
+    <body ng-app="myApp" ng-controller="myController">
+        <h2>Hello ExpressJS w/ AngularJS</h2>
+        <div id="playground"><label ng-model="test">Hello: {{test}}</label></div>
     </body>
 </html>

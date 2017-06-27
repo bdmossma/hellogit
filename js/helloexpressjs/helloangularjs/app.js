@@ -1,17 +1,7 @@
 var express = require("express")
 var app = express()
 
-var jsonResponse = {"hello": "expressjs"};
-
-// API 1: Get a JSON message
-// Example URL: http://localhost:8080/apis/json
-app.get("/apis/json", function(httpRequest, httpResponse) {
-    var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-    console.log("Client " + clientIp + " is getting a JSON message...");
-    httpResponse.send(JSON.stringify(jsonResponse));
-});
-
-// API 2: Get a simple HTML webpage that
+// API 1: Get a simple HTML webpage that
 // gets a client js
 // Example URL: http://localhost:8080/
 app.get("/", function(httpRequest, httpResponse) {
@@ -21,7 +11,7 @@ app.get("/", function(httpRequest, httpResponse) {
 });
 
 
-// API 3: Get a client js that will run inside
+// API 2: Get a client js that will run inside
 // the browser.
 // Example URL: http://localhost:8080/client.js
 app.get("/client.js", function(httpRequest, httpResponse) {
