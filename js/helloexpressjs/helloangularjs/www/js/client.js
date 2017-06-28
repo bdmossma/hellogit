@@ -100,12 +100,18 @@ var app = angular.module('myApp', []);
 app.controller('myController', function($scope, $compile) {
     $scope.test = "Hello AngularJS";
 
+	$scope.add = function(html) {
+		var compiledHtml = $compile(html)($scope);//dynamically modify the html
+		angular.element(document.getElementById("playground")).append(compiledHtml);
+	}
+
+	$scope.remove = function(name) {
+		angular.element(document.getElementById(name)).remove();
+	}
+
 	var lat = new Latitude("180", "30", "60");// input value wins
-	var latCompiledHtml = $compile(lat.html())($scope);//dynamically modify the html
-	angular.element(document.getElementById("playground")).append(latCompiledHtml);
+	$scope.add(lat.html());
 
 	var lat2 = new Latitude();// inpnut placeholder wins
-	var lat2CompiledHtml = $compile(lat2.html())($scope);//dynamically modify the html
-	angular.element(document.getElementById("playground")).append(lat2CompiledHtml);
-
+    $scope.add(lat2.html());
 });
