@@ -23,7 +23,7 @@ class SimpleExpression {
 	// by the template methods below (or by any derived class template methods
     // overriding those template methods)
 	buildOperandHtml() {
-		return '<button ng-click="removeItem(\'' + this.name + '\')">' + this.name + '</button>';
+		return '<button ng-click="remove(\'' + this.name + '\')">' + this.name + '</button>';
 	}
 	buildOperatorHtml(options) {
 		var operatorHtml = '<select name="Operators">';
@@ -36,7 +36,10 @@ class SimpleExpression {
 		return operatorHtml;
 	}
 	buildArgumentHtml(units, attributes) {
-		var argumentHtml = '<input ' + this.attributesHtml(attributes) + '" style="width:75px" required>';
+		var argumentHtml = '<input ';
+		argumentHtml += this.attributesHtml([["style","width:50px;"]]);// default behavior
+		argumentHtml += this.attributesHtml(attributes);// add custom behavior
+		argumentHtml += '" required>';
 		argumentHtml += '<label> ' + units + ' </label>';
 		return argumentHtml;
 	}
