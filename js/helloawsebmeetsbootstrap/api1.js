@@ -8,16 +8,18 @@ var express = require("express");
 var router = express.Router();
 
 //------------------------------------------------------------------------------
-// This API serves up the website root (index page)
+// This API does something else
 //------------------------------------------------------------------------------
-// API URL: https://[Base URL]/home
+// API URL: https://[Base URL]/dosomethingelse
 //------------------------------------------------------------------------------
-router.get("/home",
+router.get("/apis/dosomethingelse",
     function(httpRequest, httpResponse) {
-		var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-	    console.log("Client " + clientIp + " is getting a simple HTML webpage...");
-	    httpResponse.sendFile(__dirname + "/www/index.html");
+        var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
+        console.info("Client " + clientIp + " is trying to do something else...");
+
+		return httpResponse.send({ "message": "dosomethingelseResponse","result": true, "resultMsg": "hello" });
     }
 );
+
 
 module.exports = router

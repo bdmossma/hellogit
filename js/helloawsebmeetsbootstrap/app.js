@@ -33,6 +33,9 @@ var api2 = require("./api2");
 app.use(api1);
 app.use(api2);
 
+// plug in the api that serves up static webpage and assets
+app.use(express.static('www'));
+
 app.listen(process.env.PORT || 8080);
 
 console.log("ExpressJS App running on Port " + JSON.stringify(process.env.PORT || 8080));
