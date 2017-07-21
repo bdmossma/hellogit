@@ -22,22 +22,16 @@ app.use(cors());
 
 
 //------------------------------------------------------------------------------
-// Let's import modular APIs for login and signup from separate JavaScript files.
+// Let's import modular APIs from separate JavaScript files.
 // (We can omit the ".js" extension)
 //------------------------------------------------------------------------------
-var loginApi = require("./login_api");
-var logoutApi = require("./logout_api");
-var signupApi = require("./signup_api");
-var usersApi = require("./users_api");
-var deleteUserApi = require("./delete_user_api");
+var api1 = require("./api1");
+var api2 = require("./api2");
 
 
 // plug the APIs into the ExpressJS framework
-app.use(loginApi);
-app.use(logoutApi);
-app.use(signupApi);
-app.use(usersApi);
-app.use(deleteUserApi);
+app.use(api1);
+app.use(api2);
 
 app.listen(process.env.PORT || 8080);
 
