@@ -5,4 +5,4 @@ if [ $# -eq 0 ]; then
 	exit 0
 fi
 
-7z a -x!node_modules -x!zip.sh "helloawseb-v$1.zip" *
+7z a -x!node_modules -x!zip.sh "hellopoormancdn-v$1.zip" *

@@ -1,7 +1,7 @@
 {
-  "name": "hellogooglecloud",
+  "name": "hellopoormancdn",
   "version": "1.0.0",
-  "description": "hello world for deploying nodejs apps in the google cloud",
+  "description": "hello world for experimenting with a poor man's cdn",
   "main": "app.js",
   "scripts": {
     "test": "none"
@@ -16,9 +16,9 @@
   "author": "Ben Mossman",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bdmossma/hellogit/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/bdmossma/hellogit#readme",
+  "homepage": "",
   "dependencies": {
       "express": "*",
       "multer": "*",
