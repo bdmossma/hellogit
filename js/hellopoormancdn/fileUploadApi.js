@@ -10,6 +10,8 @@ var fileUpload = multer( { dest: "/tmp" } );
 var fs = require("fs");
 
 
+var fileList = [];
+
 //------------------------------------------------------------------------------
 // API: For the server side, use an Open Source package to do the
 // heavy lifting of parsing multipart/form-data and do the file
@@ -42,11 +44,24 @@ router.post('/apis/upload', uploadType, function (httpRequest, httpResponse, nex
     readStream.on("end", function() {
 		httpResponse.send("Uploaded");
         console.log("Uploaded " + fileName + " to: " + destPath);
+		fileList.push(fileName);
     });
     readStream.on("error", function(err) {
 		httpResponse.send("Upload failed");
 		console.log("Failed to upload file " + fileName + " to: " + destPath);
     });
+});
+
+
+//------------------------------------------------------------------------------
+// API simply responds with a JSON containing all files uploaded so far
+//------------------------------------------------------------------------------
+// URL: http://localhost:8080/apis/files
+//------------------------------------------------------------------------------
+router.get("/apis/files", function(httpRequest, httpResponse) {
+    var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
+    console.log("Client " + clientIp + " is getting file list...");
+    httpResponse.send(fileList);
 });
 
 
