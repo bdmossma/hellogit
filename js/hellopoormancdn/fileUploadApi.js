@@ -49,22 +49,4 @@ router.post('/apis/upload', uploadType, function (httpRequest, httpResponse, nex
     });
 });
 
-
-//------------------------------------------------------------------------------
-// API simply responds with a JSON containing all files uploaded so far
-//------------------------------------------------------------------------------
-// URL: http://localhost:8080/apis/files
-//------------------------------------------------------------------------------
-router.get("/apis/files", function(httpRequest, httpResponse) {
-    var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-    console.log("Client " + clientIp + " is getting file list...");
-	var fileList = [];
-	var uploadsDir = __dirname + "/www/uploads/";
-	fs.readdirSync(uploadsDir).forEach(file => {
-        fileList.push(file);
-    });
-    httpResponse.send(fileList);
-});
-
-
 module.exports = router

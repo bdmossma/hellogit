@@ -25,11 +25,13 @@ app.use(cors());
 // Let's import modular APIs from separate JavaScript files.
 // (We can omit the ".js" extension)
 //------------------------------------------------------------------------------
+var filesApi = require("./filesApi");
 var fileUploadApi = require("./fileUploadApi");
 var fileDownloadApi = require("./fileDownloadApi");
 
 
 // plug the APIs into the ExpressJS framework
+app.use(filesApi);
 app.use(fileUploadApi);
 app.use(fileDownloadApi);
 
