@@ -9,22 +9,19 @@ var fileUpload = multer( { dest: "/tmp" } );
 
 var fs = require("fs");
 
-//------------------------------------------------------------------------------
-// This API does something else
-//------------------------------------------------------------------------------
-// API URL: https://[Base URL]/dosomethingelse
+
 //------------------------------------------------------------------------------
 // API: For the server side, use an Open Source package to do the
 // heavy lifting of parsing multipart/form-data and do the file
 // uploading for us.
-// Example URL: http://localhost:8080/apis/uploadFile
+// Example URL: http://localhost:8080/apis/upload
 
 // This is the "name" attribute for the upload file in fileUploader.html and
 // is encoded in the multipart/form-data when the file
 // is uploaded.
-var uploadType = fileUpload.single("file");
+var uploadType = fileUpload.single("myFile");
 
-router.post('/apis/uploadFile', uploadType, function (httpRequest, httpResponse, next) {
+router.post('/apis/upload', uploadType, function (httpRequest, httpResponse, next) {
     var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
     var fileName = httpRequest.file.originalname;
     console.log("Client " + clientIp + " is uploading file: " + fileName);
@@ -43,11 +40,11 @@ router.post('/apis/uploadFile', uploadType, function (httpRequest, httpResponse,
     var writeStream = fs.createWriteStream(destPath);
     readStream.pipe(writeStream);
     readStream.on("end", function() {
+		httpResponse.send("Uploaded");
         console.log("Uploaded " + fileName + " to: " + destPath);
     });
     readStream.on("error", function(err) {
-		var jsonResponse = {"status": "upload failed"};
-		httpResponse.send(jsonResponse);
+		httpResponse.send("Upload failed");
 		console.log("Failed to upload file " + fileName + " to: " + destPath);
     });
 });

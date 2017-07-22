@@ -11,15 +11,12 @@ var router = express.Router();
 // This API does something.
 //------------------------------------------------------------------------------
 // API URL:
-// https://[Base URL]/apis/dosomething
+// https://[Base URL]/apis/download/[file]
 //------------------------------------------------------------------------------
-router.get("/apis/dosomething",
-    function(httpRequest, httpResponse) {
-        var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-        console.info("Client " + clientIp + " is trying to log out...");
-
-		return httpResponse.send({ "message": "dosomethingResponse","result": true, "resultMsg": "hello" });
-    }
-);
+router.get("/apis/download/:file", function(httpRequest, httpResponse) {
+    var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
+    console.log("Client " + clientIp + " is downloading file " + httpRequest.params.file);
+    httpResponse.sendFile(__dirname + "/www/uploads/" + httpRequest.params.file);
+});
 
 module.exports = router

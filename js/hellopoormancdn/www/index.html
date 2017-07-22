@@ -1,11 +1,11 @@
 
 <html>
     <head>
-		<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
-		<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
     </head>
     <body>
-		<form method="post" action="/apis/uploadFile" enctype="multipart/form-data" class="dropzone">
+		<form method="post" action="/apis/upload" enctype="multipart/form-data">
+			<input type="file" name="myFile" />
+			<input type="submit" name="submitButton" value="Submit" />
 		</form>
     </body>
 </html>
