@@ -1,19 +1,12 @@
 
 <html>
     <head>
-        <script src="js/fileUploader.js"></script>
+		<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+		<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
     </head>
     <body>
-		<form method="post" action="/apis/uploadFile" enctype="multipart/form-data">
-            <input type="file" name="myFile" /><br>
-            <input type="submit" name="submitButton" value="Submit" />
-        </form>
-
-		<div class="progress">
-		    <div class="bar"></div >
-		    <div class="percent">0%</div >
-		</div>
-
-		<div id="status"></div>
+		<form method="post" action="/apis/uploadFile" enctype="multipart/form-data" class="dropzone">
+			<input type="file" name="myFile"/>
+		</form>
     </body>
 </html>

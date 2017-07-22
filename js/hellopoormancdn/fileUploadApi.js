@@ -22,7 +22,7 @@ var fs = require("fs");
 // This is the "name" attribute for the upload file in fileUploader.html and
 // is encoded in the multipart/form-data when the file
 // is uploaded.
-var uploadType = fileUpload.single("myFile");
+var uploadType = fileUpload.single("file");
 
 router.post('/apis/uploadFile', uploadType, function (httpRequest, httpResponse, next) {
     var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
