@@ -21,7 +21,7 @@
   "homepage": "https://github.com/bdmossma/hellogit#readme",
   "dependencies": {
       "express": "*",
-      "mongodb": "*",
+      "multer": "*",
       "cors": "*"
   },
   "engines" : { "node" : "6.9.2" },

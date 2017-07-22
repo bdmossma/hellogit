@@ -1,6 +1,6 @@
 
 var express = require("express");
-var app = express();
+var router = express.Router();
 
 var multer  = require("multer");
 // Initialize multer with the tmp directory where it can
@@ -24,7 +24,7 @@ var fs = require("fs");
 // is uploaded.
 var uploadType = fileUpload.single("fileBrowser");
 
-app.post('/apis/uploadFile', uploadType, function (httpRequest, httpResponse, next) {
+router.post('/apis/uploadFile', uploadType, function (httpRequest, httpResponse, next) {
     var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
     var fileName = httpRequest.file.originalname;
     console.log("Client " + clientIp + " is uploading file: " + fileName);
