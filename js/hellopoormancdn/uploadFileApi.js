@@ -14,7 +14,7 @@ var fs = require("fs");
 // API: For the server side, use an Open Source package to do the
 // heavy lifting of parsing multipart/form-data and do the file
 // uploading for us.
-// Example URL: http://localhost:8080/apis/upload
+// Example URL: http://[Base URL]/apis/upload
 
 // This is the "name" attribute for the upload file in fileUploader.html and
 // is encoded in the multipart/form-data when the file
