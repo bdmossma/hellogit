@@ -1,11 +1,14 @@
 
-<html>
+<html style="background-color:#387EF5">
     <head>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js"></script>
+        <script src="js/files.js"></script>
     </head>
-    <body>
-		<form method="post" action="/apis/upload" enctype="multipart/form-data">
+    <body ng-app="myApp" ng-controller="myController">
+		<form method="post" action="/apis/upload" enctype="multipart/form-data" ng-submit="listFiles()">
 			<input type="file" name="myFile" />
-			<input type="submit" name="submitButton" value="Submit" />
+			<input type="submit" name="uploadButton" value="Upload"/>
 		</form>
+		<button ng-repeat="file in files" ng-click="deleteFile(file)">{{file}}</button>
     </body>
 </html>
