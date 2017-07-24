@@ -40,11 +40,11 @@ router.post('/apis/upload', uploadType, function (httpRequest, httpResponse, nex
     var writeStream = fs.createWriteStream(destPath);
     readStream.pipe(writeStream);
     readStream.on("end", function() {
-		httpResponse.send("Uploaded");
+		httpResponse.redirect(301, "https://cdn.gorealcloud.com");//redirect back to page from which form was submitted
         console.log("Uploaded " + fileName + " to: " + destPath);
     });
     readStream.on("error", function(err) {
-		httpResponse.send("Upload failed");
+		httpResponse.redirect(301, "https://cdn.gorealcloud.com");//redirect back to page from which form was submitted
 		console.log("Failed to upload file " + fileName + " to: " + destPath);
     });
 });
