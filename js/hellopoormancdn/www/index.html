@@ -1,17 +1,31 @@
+<!-- based on: http://www.matlus.com/html5-file-upload-with-progress/ -->
+<html ng-app="app">
 
-<html style="background-color:#387EF5">
-    <head>
-		<script src="js/angular.min.js"></script>
-        <script src="js/files.js"></script>
-    </head>
-    <body ng-app="myApp" ng-controller="myController">
-		<form method="post" action="/apis/upload" enctype="multipart/form-data" ng-submit="listFiles()">
-			<input type="file" name="myFile" />
-			<input type="submit" name="uploadButton" value="Upload"/>
-		</form>
-		<table>
-			<tr><td>Files</td><td>Size</td></tr>
-			<tr ng-repeat="file in files"><td>{{file}}</td><td>TODO</td><td><button ng-click="deleteFile(file)">Delete</button></td></tr>
-		</table>
-    </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular.js"></script>
+<script src="js/clientApp.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<body ng-controller="FileUploadCtrl">
+    <div class="row">
+        <label for="fileToUpload">Select a File to Upload</label><br />
+        <input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
+    </div>
+    <div id="dropbox" class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
+    <div ng-show="files.length">
+        <div ng-repeat="file in files.slice(0)">
+            <span>{{file.webkitRelativePath || file.name}}</span>
+            (<span ng-switch="file.size > 1024*1024">
+                <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+            </span>)
+        </div>
+        <input type="button" ng-click="uploadFile()" value="Upload" />
+        <div ng-show="progressVisible">
+            <div class="percent">{{progress}}%</div>
+            <div class="progress-bar">
+                <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
