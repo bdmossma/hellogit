@@ -17,14 +17,14 @@ table { border-collapse: collapse; }
     border-image: initial;
 }
 .dropbox {
-    width: 15em;
-    height: 3em;
+    width: 50%;
+    height: 50%;
     border: 2px solid #DDD;
     border-radius: 8px;
     background-color: #FEFFEC;
-    text-align: center;
+    text-align: left;
     color: #BBB;
-    font-size: 2em;
+    font-size: 12;
     font-family: Arial, sans-serif;
 }
 .dropbox span {

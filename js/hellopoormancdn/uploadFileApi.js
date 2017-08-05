@@ -16,39 +16,47 @@ var fs = require("fs");
 // uploading for us.
 // Example URL: http://[Base URL]/apis/upload
 
-// This is the "name" attribute for the upload file in fileUploader.html and
-// is encoded in the multipart/form-data when the file
-// is uploaded.
 var uploadType = fileUpload.single("uploadedFile");
 
 router.post('/apis/upload', uploadType, function (httpRequest, httpResponse, next) {
     var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
-    var fileName = httpRequest.file.originalname;
-    console.log("Client " + clientIp + " is uploading file: " + fileName);
+	var file = httpRequest.file;
+	var filename = file.originalname;
+	console.log("Client " + clientIp + " is uploading " + filename + "...");
 
     // This is a temporary filepath where the file is buffered
     // while it is being uploaded.
-    var tmpPath = httpRequest.file.path;
+    var tmpPath = file.path;
 
     // This is the final resting place of the file
     // after is uploaded.
-    var destPath = __dirname + "/www/uploads/" + fileName;
+    var destPath = __dirname + "/www/uploads/" + filename;
 
     // Use the "fs" package to work with read and write
     // streams and the filesystem.
     var readStream = fs.createReadStream(tmpPath);
     var writeStream = fs.createWriteStream(destPath);
     readStream.pipe(writeStream);
+
     readStream.on("end", function() {
-		return httpResponse.send("OK");
-		//httpResponse.redirect(301, "https://cdn.gorealcloud.com");//redirect back to page from which form was submitted
-        //console.log("Uploaded " + fileName + " to: " + destPath);
+		httpResponse.send("Uploaded");
+		console.log(filename + " uploaded");
     });
     readStream.on("error", function(err) {
-		return httpResponse.send("ERROR");
-		//httpResponse.redirect(301, "https://cdn.gorealcloud.com");//redirect back to page from which form was submitted
-		//console.log("Failed to upload file " + fileName + " to: " + destPath);
+		httpResponse.send("Upload failed: " + err);
+		console.log("error uploading " + filename + ": " + err);
     });
+	writeStream.on("error", function(err) {
+		httpResponse.send("Upload failed: " + err);
+		console.log("error uploading " + filename + ": " + err);
+    });
+
+	//writeStream.on("finish", function() {
+	//	fileUploadStatus[filename] = "Uploaded";
+	//	httpResponse.send(fileUploadStatus);
+	//	console.log(fileUploadStatus);
+    //});
+
 });
 
 module.exports = router

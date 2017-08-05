@@ -5,27 +5,38 @@
 <script src="js/clientApp.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
-<body ng-controller="FileUploadCtrl">
+<body ng-controller="FileUploadController">
     <div class="row">
         <label for="fileToUpload">Select a File to Upload</label><br />
         <input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
     </div>
-    <div id="dropbox" class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
-    <div ng-show="files.length">
-        <div ng-repeat="file in files.slice(0)">
-            <span>{{file.webkitRelativePath || file.name}}</span>
-            (<span ng-switch="file.size > 1024*1024">
-                <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
-                <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
-            </span>)
-        </div>
-        <input type="button" ng-click="uploadFile()" value="Upload" />
-        <div ng-show="progressVisible">
-            <div class="percent">{{progress}}%</div>
-            <div class="progress-bar">
-                <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
-            </div>
-        </div>
-    </div>
+    <div id="dropbox" class="dropbox" ng-class="dropClass">
+		<table>
+				<tr><th style="width:130px;align:left">Filename</th><th style="width:75px;align:left">Size</th><th style="width:300px;align:left"></th></tr>
+		        <tr ng-repeat="file in files.slice(0)">
+		            <td style="width:130px;align:left">{{file.webkitRelativePath || file.name}}</td>
+		            <td style="width:75px;align:left">
+						<label ng-switch="file.size > 1024*1024">
+		                	<label ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</label>
+		                	<label ng-switch-default>{{file.size / 1024 | number:2}} kB</label>
+		            	</label>
+					</td>
+					<td style="width:300px;align:left" ng-switch="file.progressVisible">
+						<div ng-switch-when="true">
+				            <div class="percent">{{progress}}%</div>
+				            <div class="progress-bar">
+				                <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+				            </div>
+				        </div>
+						<div ng-switch-default>
+							<input type="button" ng-click="deleteFile(file.name)" value="Delete" />
+							<input type="button" ng-click="downloadFile(file.name)" value="Download" /> 
+						</div>
+					</td>
+					<!--<td align="left">{{file.status}}</td>-->
+		        </tr>
+		</table>
+	</div>
+
 </body>
 </html>
