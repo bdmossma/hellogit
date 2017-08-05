@@ -19,7 +19,7 @@ var fs = require("fs");
 // This is the "name" attribute for the upload file in fileUploader.html and
 // is encoded in the multipart/form-data when the file
 // is uploaded.
-var uploadType = fileUpload.single("myFile");
+var uploadType = fileUpload.single("uploadedFile");
 
 router.post('/apis/upload', uploadType, function (httpRequest, httpResponse, next) {
     var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
@@ -40,12 +40,14 @@ router.post('/apis/upload', uploadType, function (httpRequest, httpResponse, nex
     var writeStream = fs.createWriteStream(destPath);
     readStream.pipe(writeStream);
     readStream.on("end", function() {
-		httpResponse.redirect(301, "https://cdn.gorealcloud.com");//redirect back to page from which form was submitted
-        console.log("Uploaded " + fileName + " to: " + destPath);
+		return httpResponse.send("OK");
+		//httpResponse.redirect(301, "https://cdn.gorealcloud.com");//redirect back to page from which form was submitted
+        //console.log("Uploaded " + fileName + " to: " + destPath);
     });
     readStream.on("error", function(err) {
-		httpResponse.redirect(301, "https://cdn.gorealcloud.com");//redirect back to page from which form was submitted
-		console.log("Failed to upload file " + fileName + " to: " + destPath);
+		return httpResponse.send("ERROR");
+		//httpResponse.redirect(301, "https://cdn.gorealcloud.com");//redirect back to page from which form was submitted
+		//console.log("Failed to upload file " + fileName + " to: " + destPath);
     });
 });
 
