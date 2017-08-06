@@ -1,6 +1,44 @@
 angular.module('app', [], function() {});
 FileUploadController.$inject = ['$scope', '$http'];
 function FileUploadController(scope, http) {
+
+	// initialize file listing as empty array
+    scope.files = [];
+
+	scope.listUploadedFiles = function() {
+		console.log("bp: listUploadedFiles");
+	    //scope.$apply(function() {
+			// Use the users API which has been deployed
+	        // in the Amazon Cloud
+	        var filesApi = "/apis/files/";//this URL is relative to base URL
+	        var httpResponse = http.get(filesApi);
+
+			console.log("bp: listUploadedFiles in $apply");
+	        // $http parses json for us, so we can just use it without having to parse it out
+	        httpResponse.success( function(files) {
+					console.log("listing files in JSON array: ");
+		            for(var fileIndex in files){
+						console.log("name: " + files[fileIndex].name + ", size: " + files[fileIndex].size);
+						var file = new File([""], files[fileIndex].name, {});
+						file.size = files[fileIndex].size;
+						file.progressVisible = false;
+						files.progress = 0;
+						files.status = "uploaded";
+	                    scope.files.push(file);
+		            }
+
+					console.log("listing files in File API array: ");
+					for(var fileIndex in scope.files){
+						console.log("name: " + scope.files[fileIndex].name + ", size: " + scope.files[fileIndex].size);
+					}
+	        });
+		//});
+		console.log("bp: listUploadedFiles after $apply");
+	}
+
+	scope.listUploadedFiles();//get fresh listing of already uploaded files
+
+
     //============== DRAG & DROP =============
     // source for drag&drop: http://www.webappers.com/2011/09/28/drag-drop-file-upload-with-html5-javascript/
     var dropbox = document.getElementById("dropbox");
@@ -10,10 +48,10 @@ function FileUploadController(scope, http) {
     function dragEnterLeave(evt) {
         evt.stopPropagation();
         evt.preventDefault();
-        scope.$apply(function(){
-            scope.dropText = 'Drop files here...';
-            scope.dropClass = '';
-        });
+        //scope.$apply(function(){
+        //    scope.dropText = 'Drop files here...';
+        //    scope.dropClass = '';
+        //});
     }
     dropbox.addEventListener("dragenter", dragEnterLeave, false);
     dropbox.addEventListener("dragleave", dragEnterLeave, false);
@@ -28,18 +66,18 @@ function FileUploadController(scope, http) {
         });
     }, false);
     dropbox.addEventListener("drop", function(evt) {
-        console.log('drop evt:', JSON.parse(JSON.stringify(evt.dataTransfer)));
+		console.log("bp: drop event listener");
         evt.stopPropagation();
         evt.preventDefault();
-        scope.$apply(function(){
-            scope.dropText = 'Drop files here...';
-            scope.dropClass = '';
-        });
+        //scope.$apply(function(){
+        //    scope.dropText = 'Drop files here...';
+        //    scope.dropClass = '';
+        //});
         var files = evt.dataTransfer.files;
         if (files.length > 0) {
             scope.$apply(function(){
+				console.log("bp: drop event listener in $apply");
 				// upon dropping files, create their file attributes as scope variables
-                scope.files = [];
                 for (var i = 0; i < files.length; i++) {
 					var file = files[i];
 					file.progressVisible = false;
@@ -52,36 +90,12 @@ function FileUploadController(scope, http) {
             });
         }
 
-		scope.listUploadedFiles();
+		scope.listUploadedFiles();//refresh the listing of already uploaded files
 
 		//immediately start uploading files upon dropping them
 		scope.uploadFiles();
     }, false);
     //============== DRAG & DROP =============
-
-	scope.listUploadedFiles = function() {
-	    scope.$apply(function() {
-			// Use the users API which has been deployed
-	        // in the Amazon Cloud
-	        var filesApi = "/apis/files/";//this URL is relative to base URL
-	        var httpResponse = http.get(filesApi);
-
-	        // $http parses json for us, so we can just use it without having to parse it out
-	        httpResponse.success( function(files) {
-	            console.log(JSON.stringify(files));
-	            scope.$apply(function(){
-		            for(var fileIndex in files){
-						var file = new File([""], files[fileIndex].name, {});
-						file.size = files[fileIndex].size;
-						file.progressVisible = false;
-						files.progress = 0;
-						files.status = "uploaded";
-	                    scope.files.push(file);
-		            }
-				});
-	        });
-		});
-	}
 
 	/*
     scope.setFiles = function(element) {
