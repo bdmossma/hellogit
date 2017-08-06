@@ -196,7 +196,34 @@ function FileUploadController(scope, http) {
 	}
 
 	scope.downloadFile = function(filename) {
-		alert("TODO: Download file");
+		// Use the users API which has been deployed
+        // in the Amazon Cloud
+        var downloadFileApi = "/apis/download/" + filename;//this URL is relative to base URL
+        var httpResponse = http.get(downloadFileApi, { "name": filename, "responseType":"arraybuffer"});
+        // $http parses json for us, so we can just use it without having to parse it out
+        httpResponse.success( function(data, status, headers) {
+			headers = headers();
+	        var filename = headers['x-filename'];
+	        var contentType = headers['content-type'];
+
+	        var linkElement = document.createElement('a');
+	        try {
+	            var blob = new Blob([data], { type: contentType });
+	            var url = window.URL.createObjectURL(blob);
+
+	            linkElement.setAttribute('href', url);
+	            linkElement.setAttribute("download", filename);
+
+	            var clickEvent = new MouseEvent("click", {
+	                "view": window,
+	                "bubbles": true,
+	                "cancelable": false
+	            });
+	            linkElement.dispatchEvent(clickEvent);
+	        } catch (ex) {
+	            console.log(ex);
+	        }
+        });
 	}
 
 }
