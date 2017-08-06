@@ -1,5 +1,6 @@
 angular.module('app', [], function() {});
 FileUploadController.$inject = ['$scope', '$http'];
+
 function FileUploadController(scope, http) {
 
 	// initialize file listing as empty array
@@ -56,6 +57,49 @@ function FileUploadController(scope, http) {
 		scope.files.splice(fileIndexToRemove, numberOfFileIndicesToRemove);
 	}
 
+	// input parameter is an array of
+	// HTML5 File objects
+	scope.addSelectedFilesToListing = function(files) {
+		// upon selecting files for upload,
+		// create their file attributes as scope variables
+		for (var i = 0; i < files.length; i++) {
+			var file = files[i];
+			// add file to listing only if it is not already
+			// in the listing, else we'd create
+			// duplicates
+			var fileIndex = scope.indexOfFileInListing(file.name);
+			if(fileIndex == -1) {
+				// if file NOT already in listing, do nothing here
+				console.log(file.name + " not found in listing");
+			} else {
+				// if file already in listing, remove it before
+				// re-adding it again
+				console.log(file.name + " found in listing");
+				scope.removeFileFromListing(fileIndex);
+			}
+			file.progressVisible = false;
+			file.progress = 0;
+			file.status = "not uploaded";
+			// TODO: Workaround: create custom size property intead of
+			// using existing ready-only size property
+			file.sizeInBytes = file.size;
+			scope.files.push(file);
+		}
+	}
+
+    //============== FILE BROWSER =============
+	var fileBrowser = document.getElementById("fileBrowser");
+	scope.setFiles = function(element) {
+		scope.$apply(function() {
+			scope.addSelectedFilesToListing(element.files);
+			// reset the files selection in the file browser
+			fileBrowser.value = "";
+		});
+		// immediately start uploading files upon selecting them
+		// in the file browser
+		scope.uploadFiles();
+	};
+
     //============== DRAG & DROP =============
     // source for drag&drop: http://www.webappers.com/2011/09/28/drag-drop-file-upload-with-html5-javascript/
     var dropbox = document.getElementById("dropbox");
@@ -91,30 +135,7 @@ function FileUploadController(scope, http) {
         var files = event.dataTransfer.files;
         if (files.length > 0) {
             //scope.$apply(function(){
-				// upon dropping files, create their file attributes as scope variables
-                for (var i = 0; i < files.length; i++) {
-					var file = files[i];
-					// add file to listing only if it is not already
-					// in the listing, else we'd create
-					// duplicates
-					var fileIndex = scope.indexOfFileInListing(file.name);
-					if(fileIndex == -1) {
-						// if file NOT already in listing, do nothing here
-						console.log(file.name + " not found in listing");
-					} else {
-						// if file already in listing, remove it before
-						// re-adding it again
-						console.log(file.name + " found in listing");
-						scope.removeFileFromListing(fileIndex);
-					}
-					file.progressVisible = false;
-					file.progress = 0;
-					file.status = "not uploaded";
-					// TODO: Workaround: create custom size property intead of
-					// using existing ready-only size property
-					file.sizeInBytes = file.size;
-					scope.files.push(file);
-                }
+				scope.addSelectedFilesToListing(files);
             //});
         }
 
