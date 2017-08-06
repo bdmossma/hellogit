@@ -13,7 +13,7 @@ router.get("/apis/delete/:file", function(httpRequest, httpResponse) {
     var clientIp = httpRequest.headers['x-forwarded-for'] || httpRequest.connection.remoteAddress;
 	var filepath = __dirname + "/www/uploads/" + httpRequest.params.file;
 	fs.unlinkSync(filepath);
-    httpResponse.send("Deleted file");
+    httpResponse.send("deleted");
     console.log("Client " + clientIp + " is deleted file " + httpRequest.params.file);
 });
 

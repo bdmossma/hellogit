@@ -180,7 +180,19 @@ function FileUploadController(scope, http) {
     }
 
     scope.deleteFile = function(filename) {
-		alert("TODO: Delete file");
+		// Use the users API which has been deployed
+        // in the Amazon Cloud
+        var deleteFileApi = "/apis/delete/" + filename;//this URL is relative to base URL
+        var httpResponse = http.get(deleteFileApi);
+        // $http parses json for us, so we can just use it without having to parse it out
+        httpResponse.success( function(status) {
+			// delete was successful, refresh the file listing
+			if(status === "deleted") {
+				scope.listUploadedFiles();
+			} else {
+				alert("Failed to delete " + filename);
+			}
+        });
 	}
 
 	scope.downloadFile = function(filename) {
