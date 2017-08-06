@@ -4,23 +4,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular.js"></script>
 <script src="js/clientApp.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <body ng-controller="FileUploadController">
-	<!--
-    <div class="row">
-        <label for="fileToUpload">Select a File to Upload</label><br />
-        <input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
-    </div>
--->
+
     <div id="dropbox" class="dropbox" ng-class="dropClass">
 		<table>
-				<tr><th style="width:130px;align:left">Filename</th><th style="width:75px;align:left">Size</th><th style="width:200px;align:left"></th></tr>
-		        <tr ng-repeat="file in files"> <!-- .slice(0)"> -->
-		            <td style="width:130px;align:left">{{file.name}}</td><!-- {{file.webkitRelativePath || file.name}}</td> -->
-		            <td style="width:75px;align:left">
-						<label ng-switch="file.size > 1024*1024">
-		                	<label ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</label>
-		                	<label ng-switch-default>{{file.size / 1024 | number:2}} kB</label>
+				<tr style="text-align:left"><th style="width:300px">Name</th><th style="width:125px">Size</th><th style="width:200px"></th></tr>
+		        <tr ng-repeat="file in files">
+		            <td style="width:300px;align:left"><i class="fa fa-file"></i>{{file.name}}</td>
+		            <td style="width:125px;align:left">
+						<label ng-switch="file.sizeInBytes > 1024*1024">
+		                	<label ng-switch-when="true">{{file.sizeInBytes / 1024 / 1024 | number:2}} MB</label>
+		                	<label ng-switch-default>{{file.sizeInBytes / 1024 | number:2}} kB</label>
 		            	</label>
 					</td>
 					<td style="width:200px;align:left" ng-switch="file.progressVisible">
