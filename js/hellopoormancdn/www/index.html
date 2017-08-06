@@ -8,9 +8,8 @@
 
 <body ng-controller="FileUploadController">
 
-	<input type="file" id="fileBrowser" ng-model-instant multiple onchange="angular.element(this).scope().setFiles(this)" />
-
     <div id="dropbox" class="dropbox" ng-class="dropClass">
+		<h3>Drag and drop or select files to upload</h3>
 		<table>
 				<tr style="text-align:left"><th style="width:300px">Name</th><th style="width:125px">Size</th><th style="width:200px"></th></tr>
 		        <tr ng-repeat="file in files">
@@ -36,6 +35,8 @@
 					<!--<td align="left">{{file.status}}</td>-->
 		        </tr>
 		</table>
+		<br>
+		<input type="file" id="fileBrowser" ng-model-instant multiple onchange="angular.element(this).scope().setFiles(this)" />
 	</div>
 
 </body>
