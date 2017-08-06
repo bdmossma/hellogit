@@ -162,7 +162,9 @@ function FileUploadController(scope, http) {
     }
 
     function uploadFailed(event) {
-		console.log("Uploaded failed for: " + scope.files[event.target.fileIndex].name);
+		var uploadFailedMsg = "Uploaded failed for: " + scope.files[event.target.fileIndex].name;
+		alert(uploadFailedMsg);//TODO: replace alert with something less annoying
+		console.log(uploadFailedMsg);
         scope.$apply(function(){
 			scope.files[event.target.fileIndex].progressVisible = false;
 			// don't display error for failed file upload, rather, must remove it
@@ -173,7 +175,9 @@ function FileUploadController(scope, http) {
     }
 
     function uploadCanceled(event) {
-		console.log("Uploaded canceled for: " + scope.files[event.target.fileIndex].name);
+		var uploadCanceledMsg = "Uploaded canceled for: " + scope.files[event.target.fileIndex].name;
+		alert(uploadCanceledMsg);//TODO: replace alert with something less annoying
+		console.log(uploadCanceledMsg);
         scope.$apply(function(){
 			scope.files[event.target.fileIndex].progressVisible = false;
         });
