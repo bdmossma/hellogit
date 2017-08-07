@@ -1,0 +1,43 @@
+<!-- based on: http://www.matlus.com/html5-file-upload-with-progress/ -->
+<html ng-app="app">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular.js"></script>
+<script src="js/clientApp.js"></script>
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body ng-controller="FileUploadController">
+
+    <div id="dropbox" class="dropbox" ng-class="dropClass">
+		<h3>Drag and drop or select files to upload</h3>
+		<table>
+				<tr style="text-align:left"><th style="width:300px">Name</th><th style="width:125px">Size</th><th style="width:200px"></th></tr>
+		        <tr ng-repeat="file in files">
+		            <td style="width:300px;align:left"><i class="fa fa-file" style="padding-right:5px"></i>{{file.name}}</td>
+		            <td style="width:125px;align:left">
+						<label ng-switch="file.sizeInBytes > 1024*1024">
+		                	<label ng-switch-when="true">{{file.sizeInBytes / 1024 / 1024 | number:2}} MB</label>
+		                	<label ng-switch-default>{{file.sizeInBytes / 1024 | number:2}} kB</label>
+		            	</label>
+					</td>
+					<td style="width:200px;align:left" ng-switch="file.progressVisible">
+						<div ng-switch-when="true">
+				            <div class="percent">{{progress}}%</div>
+				            <div class="progress-bar">
+				                <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+				            </div>
+				        </div>
+						<div ng-switch-default>
+							<input type="button" ng-click="deleteFile(file.name)" value="Delete" />
+							<input type="button" ng-click="downloadFile(file.name)" value="Download" />
+						</div>
+					</td>
+					<!--<td align="left">{{file.status}}</td>-->
+		        </tr>
+		</table>
+		<br>
+		<input type="file" id="fileBrowser" ng-model-instant multiple onchange="angular.element(this).scope().setFiles(this)" />
+	</div>
+
+</body>
+</html>
