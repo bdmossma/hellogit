@@ -10,15 +10,17 @@ var router = express.Router();
 // of a user in our mongodb database
 var User = require('./../../models/user');
 
+// plug in middlewares to parse HTTP body as urlencoded and JSON
+// and put it in request.body JSON object
+// for APIs on this router
+router.use(express.urlencoded({ extended: false }));
+router.use(express.json());
 // update an existing user
 // Usage:
-//  POST http://localhost:8080/apis/public/updateuser
-//       with "x-www-form-urlencoded" set to
-//       {name:"name", password: "password", apis: ["hello", "goodbye"]}
+// POST http://localhost:8080/apis/public/updateuser
+// with {name:"name", password: "password", apis: ["hello", "goodbye"]} in the body
 router.post('/apis/public/updateuser', function(request, response) {
-    user_info = request.headers['x-www-form-urlencoded'];
-    user_info_valid = user_info.name & user_info.password & user_info.apis;
-    if(user_info_valid) {
+    if(request.body.name & request.body.password & request.body.apis) {
         User.findOne({name: request.body.name}, function(error, user) {
             if (error) {
                 response.json({ success: false, message: "Failed to find user." });
@@ -32,8 +34,8 @@ router.post('/apis/public/updateuser', function(request, response) {
             console.log('Updated user.');
         });
     } else {
-        response.json({ success: false, message: "Invalid user info." });
-        console.log('Invalid user info.');  
+        response.json({ success: false, message: "Invalid request. Missing user info." });
+        console.log('Invalid request. Missing user info.');  
     }
 });
 

@@ -3,11 +3,6 @@ var express = require('express');
 // create an ExpressJS application
 var app = express();
 
-// import body-parser
-var bodyParser = require('body-parser');
-// use body parser so we can parse info from POST and/or URL parameters
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 // import morgan logger
 var morgan = require('morgan');
@@ -21,6 +16,8 @@ updateuser_api = require('./apis/public/updateuser_api')
 app.use(updateuser_api)
 deleteuser_api = require('./apis/public/deleteuser_api')
 app.use(deleteuser_api)
+deleteallusers_api = require('./apis/public/deleteallusers_api')
+app.use(deleteallusers_api)
 users_api = require('./apis/public/users_api')
 app.use(users_api)
 
@@ -29,13 +26,6 @@ app.use(users_api)
 apigw_api = require('./apis/public/apigw_api')
 app.use(apigw_api)
 
-// API Access Control:
-// Here we configure the ExpressJS app to use an API access controller for
-// verifying JWT tokens. This must be plugged in:
-//     - AFTER public APIs; and
-//     - BEFORE private APIs
-var api_access_controller = require('./apis/api_access_controller')
-app.use(api_access_controller);
 
 // import the private APIs that are accessible only to authenticated
 // users that are also authorized to access them

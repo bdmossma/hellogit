@@ -22,51 +22,57 @@ var secret = config.secret;
 // digitally sign each JWT (token) that it issues to a client; and APIs use it to verify the
 // digital signature of each JWT presented by a client.
 
+// plug in middlewares to parse HTTP body as urlencoded and JSON
+// and put it in request.body JSON object
+// for APIs on this router
+router.use(express.urlencoded({ extended: false }));
+router.use(express.json());
 
 // Let's create an API that will function as an API Gateway for all of
 // the other APIs.  This will work like a user login.
-// URL: http://localhost:8080/apis/apigw
-router.post('/apis/apigw', function(request, response) {
+// Usage:
+// POST http://localhost:8080/apis/public/apigw
+router.post('/apis/public/apigw', function(request, response) {
     
-        // find the user
-        User.findOne({
-            name: request.body.name
-        }, function(error, user) {
-    
-            if (error) throw error;
-    
-            if (!user) {
-                response.json({ success: false, message: 'Authentication failed. User not found.' });
-            } else if (user) {
-                // check if password matches
-                if (user.password != request.body.password) {
-                    response.json({ success: false, message: 'Authentication failed. Wrong password.' });
-                } else {
-                    // if user is found and password matches
-                    // create a token
+    if(!request.body.name || !request.body.password) {
+        response.json({ success: false, message: 'Invalid request. Missing user credentials.' });
+    }
 
-                    // create a custom payload for the token containing a list of
-                    // authorized apis for this user
-                    var payload = {
-                        apis: ["hello", "goodbye"]
-                    }
+    // find the user
+    User.findOne({name: request.body.name}, function(error, user) {
+        if (error) throw error;
+        if (!user) {
+            response.json({ success: false, message: 'Authentication failed. User not found.' });
+        } else if (user) {
+            // check if password matches
+            if (user.password != request.body.password) {
+                response.json({ success: false, message: 'Authentication failed. Wrong password.' });
+            } else {
+                // if user is found and password matches
+                // create a token
 
-                    var token = jwt.sign(payload, secret, {
-                        // for security reasons, let's make the token expire in 24 hours
-                        expiresIn: '24h'
-                    });
-    
-                    response.json({
-                        success: true,
-                        message: 'Authentication successful. You must re-authenticate after 24 hrs.',
-                        token: token
-                    });
-                }		
-    
-            }
-    
-        });
+                // create a custom payload for the token containing a list of
+                // authorized apis for this user
+                var payload = {
+                    apis: ["hello", "goodbye"]
+                }
+
+                var token = jwt.sign(payload, secret, {
+                    // for security reasons, let's make the token expire in 24 hours
+                    expiresIn: '24h'
+                });
+
+                response.json({
+                    success: true,
+                    message: 'Authenticated. You must re-authenticate after 24 hrs.',
+                    token: token
+                });
+            }		
+
+        }
+
     });
+});
     
 
 module.exports = router

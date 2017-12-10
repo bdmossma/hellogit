@@ -18,16 +18,16 @@ router.use(express.json());
 
 // create a new user
 // Usage:
-// PATCH http://localhost:8080/apis/public/deleteuser
-// with {name:"name"} in the body
-router.patch('/apis/public/deleteuser', function(request, response) {
-    User.findOneAndRemove({name: user_info.name}, function(error) {
+// PATCH http://localhost:8080/apis/public/deleteallusers
+router.patch('/apis/public/deleteallusers', function(request, response) {
+    // use a wide filter, remove all users
+    User.remove({}, function(error) {
         if(error) {
-            response.json({ success: false, message: "Failed to delete user." });
-            console.log('Failed to delete user.')
+            response.json({ success: false, message: "Failed to delete all users." });
+            console.log('Failed to delete all users.')
         }
-        response.json({ success: false, message: "Deleted user." });
-        console.log('Deleted user.')
+        response.json({ success: false, message: "Deleted all users." });
+        console.log('Deleted all users.')
     });
 });
 

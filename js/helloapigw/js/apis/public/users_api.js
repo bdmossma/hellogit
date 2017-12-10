@@ -12,7 +12,7 @@ var User   = require('./../../models/user');
 
 // Let's create an API to get all users
 // Usage:
-//   GET http://localhost:8080/apis/public/users
+// GET http://localhost:8080/apis/public/users
 router.get('/apis/public/users', function(request, response) {
 	// use a wide open filter, get ALL the users
 	User.find({}, function(error, users) {

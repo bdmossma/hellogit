@@ -10,32 +10,30 @@ var router = express.Router();
 // of a user in our mongodb database
 var User = require('./../../models/user');
 
+// plug in middlewares to parse HTTP body as urlencoded and JSON
+// and put it in request.body JSON object
+// for APIs on this router
+router.use(express.urlencoded({ extended: false }));
+router.use(express.json());
+
 // create a new user
 // Usage:
-//   POST http://localhost:8080/apis/public/createuser
-//       with "x-www-form-urlencoded" set to
-//       {name:"name", password: "password", apis: ["hello", "goodbye"]}
+// POST http://localhost:8080/apis/public/createuser
+// with {name:"name", password: "password", apis: ["hello", "goodbye"]} in the body
 router.post('/apis/public/createuser', function(request, response) {
-    user_info = request.headers['x-www-form-urlencoded'];
-    console.log(user_info);
-    if(true) {
-        var new_user = new User({ 
-            name: user_info.name, 
-            password: user_info.password,
-            apis: user_info.apis
-        });
-        new_user.save(function(error) {
-            if (error)  {
-                response.json( { success: false, message: "Failed to create new user." } );
-                console.log('Failed to create new user.');
-            }
-            response.json( { success: true, message: "Created new user." } );
-            console.log('Created new user.');
-        });
-    } else {
-        response.json( { success: false, message: "Invalid user info." } );
-        console.log('Invalid user info.');
-    }
+    var new_user = new User({ 
+        name: request.body.name, 
+        password: request.body.password,
+        apis: request.body.apis
+    });
+    new_user.save(function(error) {
+        if (error)  {
+            response.json( { success: false, message: "Failed to create new user." } );
+            console.log('Failed to create new user.');
+        }
+        response.json( { success: true, message: "Created new user." } );
+        console.log('Created new user.');
+    });
 });
 
 module.exports = router
