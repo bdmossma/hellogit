@@ -1,0 +1,72 @@
+// import the Express JS framework
+var express = require("express");
+// import the api router so we can create a modular api
+// and export it from this file to the main
+// application
+var router = express.Router();
+
+// import package for creating, signing and verifying tokens
+var jwt = require('jsonwebtoken');
+
+// import our mongoose "user" model which is just an object oriented representation
+// of a user in our mongodb database
+var User   = require('./../../models/user');
+
+// import our project configurtion file
+var config = require('./../../config');
+// configure the secret that is shared between the api gateway
+// and apis and is used for authorizing user access
+// to each private api
+var secret = config.secret;
+// NOTE: This secret works like a private symmetric key.  The API Gateway uses it to
+// digitally sign each JWT (token) that it issues to a client; and APIs use it to verify the
+// digital signature of each JWT presented by a client.
+
+
+// Let's create an API that will function as an API Gateway for all of
+// the other APIs.  This will work like a user login.
+// URL: http://localhost:8080/apis/apigw
+router.post('/apis/apigw', function(request, response) {
+    
+        // find the user
+        User.findOne({
+            name: request.body.name
+        }, function(error, user) {
+    
+            if (error) throw error;
+    
+            if (!user) {
+                response.json({ success: false, message: 'Authentication failed. User not found.' });
+            } else if (user) {
+                // check if password matches
+                if (user.password != request.body.password) {
+                    response.json({ success: false, message: 'Authentication failed. Wrong password.' });
+                } else {
+                    // if user is found and password matches
+                    // create a token
+
+                    // create a custom payload for the token containing a list of
+                    // authorized apis for this user
+                    var payload = {
+                        apis: ["hello", "goodbye"]
+                    }
+
+                    var token = jwt.sign(payload, secret, {
+                        // for security reasons, let's make the token expire in 24 hours
+                        expiresIn: '24h'
+                    });
+    
+                    response.json({
+                        success: true,
+                        message: 'Authentication successful. You must re-authenticate after 24 hrs.',
+                        token: token
+                    });
+                }		
+    
+            }
+    
+        });
+    });
+    
+
+module.exports = router
