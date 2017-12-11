@@ -28,14 +28,16 @@ var secret = config.secret;
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
-// Let's create an API that will function as an API Gateway for all of
-// the other APIs.  This will work like a user login.
-// Usage:
-// POST http://localhost:8080/apis/public/apigw
+
+// Let's make an "API Gateway" API for authenticating users and issuing
+// JWT-based bearer tokens.
+// HTTP Method & URL: POST http://localhost:8080/apis/public/apigw
+// Headers: Content-Type = application/json
+// Body: {"name":"name", "password": "password"}
 router.post('/apis/public/apigw', function(request, response) {
     
     if(!request.body.name || !request.body.password) {
-        response.json({ success: false, message: 'Invalid request. Missing user credentials.' });
+        return response.json({ success: false, message: 'Invalid request. Missing user info.' });
     }
 
     // find the user
@@ -51,13 +53,16 @@ router.post('/apis/public/apigw', function(request, response) {
                 // if user is found and password matches
                 // create a token
 
-                // create a custom payload for the token containing a list of
-                // authorized apis for this user
-                var payload = {
-                    apis: ["hello", "goodbye"]
+                // Let's create a custom token payload containing which APIs this user
+                // is authorized to access.  We get that list of APIs from
+                // our user database.
+                var token_payload = {
+                    apis: user.apis
                 }
 
-                var token = jwt.sign(payload, secret, {
+                console.log("Created token payload: " + JSON.stringify(token_payload));//debug
+
+                var token = jwt.sign(token_payload, secret, {
                     // for security reasons, let's make the token expire in 24 hours
                     expiresIn: '24h'
                 });

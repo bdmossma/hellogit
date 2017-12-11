@@ -29,25 +29,37 @@ var api_access_controller = function(request, response, next) {
                 if (error) {
                     return response.json({ success: false, message: 'Failed to authenticate token.' });		
                 } else {
+                    console.log("API Access Control => JWT bearer token is authenticated. We can trust its claims.");
+                    var authorized_apis_in_token = decoded_token.apis;
+                    var requested_api = request.url;
+
                     // TODO: Make sure this is correct.
                     //if everything is good, save to request for use in other routes
                     request.decoded = decoded_token;
 
                     //debug
-                    console.log('token: ' + decoded_token)
-                    
-                    // TODO: check apis authorized for this user
-                    // if they are not authorized for the api they are
-                    // requesting, return code 403
-                    //return response.status(403).send({ 
-                    //    success: false, 
-                    //    message: 'User not authorized for this api.'
-                    //});
+                    console.log('API Access Control => Authorized APIs in the authenticated JWT bearer token: ' + JSON.stringify(authorized_apis_in_token));
+                    console.log("API Access Control => User is trying to access API: " + requested_api);
 
-                    // this proceed with checking the HTTP request against the remaining routes in the list,
-                    // which that list is basically any api routes added to the ExpressJS app
-                    // after the token_handler
-                    next();
+                    // Now that the JWT bearer token is authenticated.  We can trust its claims.
+                    // The next step is authorization.
+                    // Let's check if the requested API (URL) is among the authorized
+                    // APIS listed in the bearer token.
+                    if(authorized_apis_in_token.indexOf(requested_api) > -1) {
+                        console.log("User is authorized for API: " + requested_api);
+                        // Next that we know access to this API is authorized, let's allow
+                        // handling of the request...
+                        // Let's exit the middleware and proceed with checking the
+                        // HTTP request against all the API routes / handlers
+                        // that are registered.
+                        next();
+                    } else {
+                        // WARNING: User is NOT authorized to access the API they are requested.
+                        // Do NOT allow the user to access the API!!!
+                        // Return HTTP code 403 Forbidden.
+                        console.log("User not authorized for API: " + requested_api);
+                        return response.status(403).send({ success: false, message: "User not authorized for API: " + requested_api});
+                    }
                 }
             });
         } else {

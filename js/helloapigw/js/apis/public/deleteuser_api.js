@@ -16,18 +16,26 @@ var User = require('./../../models/user');
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
-// create a new user
-// Usage:
-// PATCH http://localhost:8080/apis/public/deleteuser
-// with {name:"name"} in the body
+
+// Let's make an API for deleting a single user
+// that we specify by name.
+// HTTP Method & URL: PATCH http://localhost:8080/apis/public/deleteuser
+// Headers: Content-Type = application/json
+// Body: {"name":"name"}
 router.patch('/apis/public/deleteuser', function(request, response) {
-    User.findOneAndRemove({name: user_info.name}, function(error) {
+    if(!request.body.name) {
+        return response.json({ success: false, message: "Invalid request. Missing username."});
+    }
+
+    console.log("request.body: " + JSON.stringify(request.body));//debug
+    User.findOneAndRemove({name: request.body.name}, function(error) {
         if(error) {
             response.json({ success: false, message: "Failed to delete user." });
             console.log('Failed to delete user.')
+        } else {
+            response.json({ success: true, message: "Deleted user." });
+            console.log('Deleted user.');
         }
-        response.json({ success: false, message: "Deleted user." });
-        console.log('Deleted user.')
     });
 });
 

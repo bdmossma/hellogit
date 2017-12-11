@@ -16,11 +16,16 @@ var User = require('./../../models/user');
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
-// create a new user
-// Usage:
-// POST http://localhost:8080/apis/public/createuser
-// with {name:"name", password: "password", apis: ["hello", "goodbye"]} in the body
+// Let's make an API for creating a new user.
+// HTTP Method & URL: POST http://localhost:8080/apis/public/createuser
+// Headers: Content-Type = application/json
+// Body: {"name":"name", "password": "password", "apis": ["/apis/private/hello"]}
 router.post('/apis/public/createuser', function(request, response) {
+    if(!request.body.name || !request.body.password || !request.body.apis) {
+        return response.json({ success: false, message: "Invalid request. Missing user info."});
+    }
+
+    console.log("request.body: " + JSON.stringify(request.body));//debug
     var new_user = new User({ 
         name: request.body.name, 
         password: request.body.password,

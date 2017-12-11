@@ -10,9 +10,10 @@ var router = express.Router();
 // of a user in our mongodb database
 var User   = require('./../../models/user');
 
-// Let's create an API to get all users
-// Usage:
-// GET http://localhost:8080/apis/public/users
+
+// Let's make an API for querying all of the users
+// currently in our database.
+// HTTP Method & URL: GET http://localhost:8080/apis/public/users
 router.get('/apis/public/users', function(request, response) {
 	// use a wide open filter, get ALL the users
 	User.find({}, function(error, users) {

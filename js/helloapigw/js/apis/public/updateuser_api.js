@@ -15,28 +15,30 @@ var User = require('./../../models/user');
 // for APIs on this router
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
-// update an existing user
-// Usage:
-// POST http://localhost:8080/apis/public/updateuser
-// with {name:"name", password: "password", apis: ["hello", "goodbye"]} in the body
-router.post('/apis/public/updateuser', function(request, response) {
-    if(request.body.name & request.body.password & request.body.apis) {
-        User.findOne({name: request.body.name}, function(error, user) {
-            if (error) {
-                response.json({ success: false, message: "Failed to find user." });
-                console.log('Failed to find user');
-            }
-            // currently we support updating the user password and
-            // which apis the user can access
-            user.password = request.body.password;
-            user.apis = request.body.apis;
+
+
+// Let's make an API for updating an existing user
+// currently in our database.
+// HTTP Method & URL: PATCH http://localhost:8080/apis/public/updateuser
+// Headers: Content-Type = application/json
+// Body: {"name":"name", "password": "password", "apis": ["/apis/private/hello"]}
+router.patch('/apis/public/updateuser', function(request, response) {
+    if(!request.body.name || !request.body.password || !request.body.apis) {
+        return response.json({ success: false, message: "Invalid request. Missing user info."});
+    }
+
+    console.log("request.body: " + JSON.stringify(request.body));//debug
+    User.findOneAndUpdate({name: request.body.name}, request.body, function(error, user) {
+        if (error) {
+            response.json({ success: false, message: "Failed to update user." });
+            console.log('Failed to update user');
+        } else {
+            console.log("user = " + JSON.stringify(user));
             response.json({ success: true, message: "Updated user." });
             console.log('Updated user.');
-        });
-    } else {
-        response.json({ success: false, message: "Invalid request. Missing user info." });
-        console.log('Invalid request. Missing user info.');  
-    }
+        }
+    });
+
 });
 
 module.exports = router

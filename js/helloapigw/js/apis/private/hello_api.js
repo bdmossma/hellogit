@@ -12,13 +12,12 @@ var router = express.Router();
 var api_access_controller = require('./../api_access_controller')
 router.use(api_access_controller);
 
-// Let's create a hello API for this web application
-// Usage:
-// GET http://localhost:8080/apis/private/hello
-// with 'x-access-token' set to JWT token received when authenticating
+// Let's create a hello API for this web application.
+// HTTP Method & URL: GET http://localhost:8080/apis/private/hello
+// Headers: 'x-access-token' = JWT-based bearer token received when authenticating
 // at http://localhost:8080/apis/public/apigw
 router.get('/apis/private/hello', function(request, response) {
-	response.send('Hello!');
+	response.json({message: 'Hello!'});
 });
 
 module.exports = router
