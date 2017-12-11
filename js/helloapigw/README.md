@@ -8,20 +8,39 @@ Simply put, authentication is just verifying the identity of the user; in other 
 
 With JWT-based authorization, we can provide fine grained API access control.  This is a typical business case, as we commonly want to give users access to only those resources that they have paid for.
 
-### Authentication
-Send a `POST` request to `http://localhost:8080/api/public/apigw` with `x-www-form-urlencoded` header set to:
-```
-{ name: 'Superman', password: 'password' }
-```
-If authenticated, you will get back a JSON response like this:
+### Create a User who can access certain APIs
+#### Request
+HTTP Method & URL: `POST http://localhost:8080/apis/public/createuser`
+Headers: `Content-Type: application/json`
+Body: `{"name":"name", "password": "password", "apis": ["/apis/private/hello"]}`
+
+#### Response
 ```
 {
     "success": true,
-    "message": "Authentication successful. You must re-authenticate after 24 hrs.",
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTI4NTcwODcsImV4cCI6MTUxMjk0MzQ4N30.6MaWpFsjtT0bhcvam6BhTJXIBQpFqYo2wwfN5ZTWuUo"
+    "message": "Created new user."
 }
 ```
 
-### Authorization
-Send a `GET` request to a REST API (`http://localhost:8080/api/private/hello`, for example) with the `x-access-token` header set to
-the token received when authenticating.
+### User Authentication & Authorization
+#### Request
+HTTP Method & URL: `POST http://localhost:8080/apis/public/apigw`
+Headers: `Content-Type: application/json`
+Body: `{"name":"name", "password": "password"}`
+
+#### Response
+```
+{
+    "success": true,
+    "message": "Authenticated. You must re-authenticate after 24 hrs.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlzIjpbIi9hcGlzL3ByaXZhdGUvZ29vZGJ5ZSJdLCJpYXQiOjE1MTI5NTI0MjQsImV4cCI6MTUxMzAzODgyNH0.pKVj1Y0Pfg7Dc066qnbamBi7NPqZmZRbnwFMz_eBSts"
+}
+```
+
+### Access an Authorized API
+#### Request
+HTTP Method & URL: `GET http://localhost:8080/apis/private/hello`
+Headers: `x-access-token`: JWT-based bearer token received when authenticating at `http://localhost:8080/apis/public/apigw`
+
+#### Response
+`{ message: "Hello!" }`
