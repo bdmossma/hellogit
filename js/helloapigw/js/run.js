@@ -20,6 +20,8 @@ deleteallusers_api = require('./apis/public/deleteallusers_api')
 app.use(deleteallusers_api)
 users_api = require('./apis/public/users_api')
 app.use(users_api)
+resetusers_api = require('./apis/public/resetusers_api')
+app.use(resetusers_api)
 
 // import the "API Gateway" API that controls access to
 // all of the private APIs
