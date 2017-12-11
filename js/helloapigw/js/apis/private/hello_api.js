@@ -17,7 +17,7 @@ router.use(api_access_controller);
 // Headers: 'x-access-token' = JWT-based bearer token received when authenticating
 // at http://localhost:8080/apis/public/apigw
 router.get('/apis/private/hello', function(request, response) {
-	response.json({message: 'Hello!'});
+	response.json({ success: true, message: 'Hello!'});
 });
 
 module.exports = router
