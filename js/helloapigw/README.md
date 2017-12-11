@@ -43,4 +43,17 @@ HTTP Method & URL: `GET http://localhost:8080/apis/private/hello`
 Headers: `x-access-token`: JWT-based bearer token received when authenticating at `http://localhost:8080/apis/public/apigw`
 
 #### Response
-`{ message: "Hello!" }`
+`{ success: true, message: "Hello!" }`
+
+### Access an Un-authorized API
+#### Request
+HTTP Method & URL: `GET http://localhost:8080/apis/private/goodbye`
+Headers: `x-access-token`: JWT-based bearer token received when authenticating at `http://localhost:8080/apis/public/apigw`
+
+#### Response
+```
+{
+    "success": false,
+    "message": "User not authorized for API: /apis/private/hello"
+}
+```
