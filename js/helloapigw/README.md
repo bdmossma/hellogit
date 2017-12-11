@@ -1,4 +1,4 @@
-# Node Token Authentication
+# Simple API Gateway based on JWT bearer tokens
 
 This project demonstrates a simple API Gateway using Node.js and [JSON Web Tokens](https://jwt.io/)
 
